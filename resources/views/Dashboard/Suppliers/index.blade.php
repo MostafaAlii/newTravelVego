@@ -50,6 +50,9 @@
                                     <thead>
                                         <tr>
                                             <th class="border-bottom-0">#</th>
+                                            <th class="border-bottom-0">
+                                                <input name="select_all" id="example-select-all" type="checkbox" />
+                                            </th>
                                             <th class="border-bottom-0">{{ trans('dashboard/supplier.supplier_email') }}</th>
                                             <th class="border-bottom-0">{{ trans('dashboard/supplier.name') }}</th>
                                             <th class="border-bottom-0">{{ trans('dashboard/supplier.avatar_photo') }}</th>
@@ -64,6 +67,9 @@
                                         @foreach($suppliers as $supplier)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
+                                                <td>
+                                                    <input name="delete_select" class="delete_select" value="{{$supplier->id}}" type="checkbox" />
+                                                </td>
                                                 <td>{{ $supplier->email }}</td>
                                                 <td>{{ $supplier->first_name . ' ' . $supplier->last_name }}</td>
                                                 <td>
@@ -137,6 +143,16 @@
 <script src="{{URL::asset('assets/Dashboard/plugins/notify/js/notifIt-custom.js')}}"></script>
 <script src="{{URL::asset('assets/Dashboard/plugins/select2/js/select2.full.min.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/switchery/0.8.2/switchery.min.js"></script>
+<script>
+    $(function(){
+        jQuery("[name=select_all]").click(function(source)) {
+            checkboxes = jQuery("[name=delete_select]");
+            for(var i in checkboxes) {
+                checkboxes[i].checked = source.target.checked;
+            }
+        });
+    })
+</script>
 <script>
     var loadFile = function (event) {
         var output = document.getElementById('output');

@@ -61,7 +61,7 @@
                                     <div class="col-6 col-md-4">
                                         <div class="form-field form-group">
                                             <label for="company_name" class="label">{{ trans('dashboard/supplier.supplier_company_name') }}</label>
-                                            <input id="company_name" class="input-text form-control" value="{{ old('company_name') }}" type="text" name="company_name" placeholder="{{ trans('dashboard/supplier.type_supplier_company_name') }}">
+                                            <input id="company_name" autofocus class="input-text form-control" value="{{ old('company_name') }}" type="text" name="company_name" placeholder="{{ trans('dashboard/supplier.type_supplier_company_name') }}">
                                             @error("company_name")
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
