@@ -7,11 +7,13 @@
 <link href="{{URL::asset('assets/Dashboard/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
 <link href="{{URL::asset('assets/Dashboard/plugins/notify/css/notifIt.css')}}" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/switchery/0.8.2/switchery.min.css" rel="stylesheet">
+<link href="{{URL::asset('assets/Dashboard/file-uploaders/dropzone.min.css')}}" rel="stylesheet">
 <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <script async defer
 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqxiPxkv5Gw46jSkwDJ3GfVflUyy08skI&callback=initMap">
 </script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/min/dropzone.min.css" integrity="sha512-bbUR1MeyQAnEuvdmss7V2LclMzO+R9BzRntEE57WIKInFVQjvX7l7QZSxjNDt8bg41Ww05oHSh0ycKFijqD7dA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqxiPxkv5Gw46jSkwDJ3GfVflUyy08skI&libraries=places&callback=initAutocomplete&language=ar&region=EG
          async defer"></script>
 @endsection
@@ -45,7 +47,7 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqxiPxkv5Gw46jSkwDJ3GfVfl
                             <div class="main-profile-overview">
                                 <!-- Start main-img-user profile-user -->
                                 <div class="main-img-user profile-user">
-                                    <img alt="" src="{{$userProfile->image_path}}"><a class="fas fa-camera profile-edit" href="JavaScript:void(0);"></a>
+                                    <img alt="" src="{{--$userProfile->image_path --}}"><a class="fas fa-camera profile-edit" href="JavaScript:void(0);"></a>
                                 </div>
                                 <!-- End main-img-user profile-user -->
                                 <!-- Start profile-user-name -->
@@ -59,7 +61,7 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqxiPxkv5Gw46jSkwDJ3GfVfl
                                 <!-- Start Description -->
                                 <h6>{{ trans('dashboard/supplier.supplier_description') }}</h6>
                                 <div class="main-profile-bio">
-                                    {!! $userProfile->description !!}
+                                    {!! \Str::limit($userProfile->description, 35) !!}
                                 </div>
                                 <!-- End Description -->
                                 <hr class="mg-y-30">
@@ -154,6 +156,12 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqxiPxkv5Gw46jSkwDJ3GfVfl
                             </div>
 
                             <div class="tab-pane" id="profile">
+                                <div style="text-align: center" class="small-4 medium-4 large-4 columns">
+                                    <a class="modal-effect btn btn-lg btn-success text-center" data-effect="effect-scale" data-toggle="modal" href="#upload{{$userProfile->id}}">
+                                        <i class="las la-cloud-upload-alt"></i>
+                                    </a>
+                                </div>
+                                <hr>
                                 <div class="row">
                                     <div class="col-sm-4">
                                         <div class="border p-1 card thumb">
@@ -238,6 +246,7 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqxiPxkv5Gw46jSkwDJ3GfVfl
             <!-- End Col-lg-8 -->
         </div>
         <!-- End row -->
+        @include('Dashboard.Suppliers.btn.upload')
     </div>
     <!-- Container closed -->
 </div>
@@ -269,7 +278,7 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqxiPxkv5Gw46jSkwDJ3GfVfl
 <script src="{{URL::asset('assets/Dashboard/plugins/notify/js/notifIt-custom.js')}}"></script>
 <script src="{{URL::asset('assets/Dashboard/plugins/select2/js/select2.full.min.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/switchery/0.8.2/switchery.min.js"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/min/dropzone.min.js" integrity="sha512-9WciDs0XP20sojTJ9E7mChDXy6pcO0qHpwbEJID1YVavz2H6QBz5eLoDD8lseZOb2yGT8xDNIV7HIe1ZbuiDWg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
     $("#pac-input").focusin(function() {
         $(this).val('');
@@ -459,5 +468,62 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqxiPxkv5Gw46jSkwDJ3GfVfl
      async
    ></script>
 
+   <script>
+
+</script>
+
+<script>
+    var uploadedDocumentMap = {}
+   Dropzone.options.dpzMultipleFiles = {
+       paramName: "dzfile", // The name that will be used to transfer the file
+       //autoProcessQueue: false,
+       maxFilesize: 5, // MB
+       clickable: true,
+       addRemoveLinks: true,
+       acceptedFiles: 'image/*',
+       dictFallbackMessage: " المتصفح الخاص بكم لا يدعم خاصيه تعدد الصوره والسحب والافلات ",
+       dictInvalidFileType: "لايمكنك رفع هذا النوع من الملفات ",
+       dictCancelUpload: "الغاء الرفع ",
+       dictCancelUploadConfirmation: " هل انت متاكد من الغاء رفع الملفات ؟ ",
+       dictRemoveFile: "حذف الصوره",
+       dictMaxFilesExceeded: "لايمكنك رفع عدد اكثر من هضا ",
+       headers: {
+           'X-CSRF-TOKEN':
+               "{{ csrf_token() }}"
+       }
+       ,
+       url: "{{ route('supplier_gallery_image_store') }}", // Set the url
+       success:
+           function (file, response) {
+               $('form').append('<input type="hidden" name="document[]" value="' + response.name + '">')
+               uploadedDocumentMap[file.name] = response.name
+           }
+       ,
+       removedfile: function (file) {
+           file.previewElement.remove()
+           var name = ''
+           if (typeof file.file_name !== 'undefined') {
+               name = file.file_name
+           } else {
+               name = uploadedDocumentMap[file.name]
+           }
+           $('form').find('input[name="document[]"][value="' + name + '"]').remove()
+       }
+       ,
+       // previewsContainer: "#dpz-btn-select-files", // Define the container to display the previews
+       init: function () {
+               @if(isset($event) && $event->document)
+           var files =
+           {!! json_encode($event->document) !!}
+               for (var i in files) {
+               var file = files[i]
+               this.options.addedfile.call(this, file)
+               file.previewElement.classList.add('dz-complete')
+               $('form').append('<input type="hidden" name="document[]" value="' + file.file_name + '">')
+           }
+           @endif
+       }
+   }
+</script>
 
 @endsection

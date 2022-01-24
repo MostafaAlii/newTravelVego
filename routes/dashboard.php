@@ -13,6 +13,7 @@ use App\Http\Controllers\Dashboard\CityController;
 use App\Http\Controllers\Dashboard\ProductController;
 use App\Http\Controllers\Dashboard\SectionsController;
 use App\Http\Controllers\Dashboard\SupplierController;
+use App\Http\Controllers\Dashbord\SupplierGallery; 
 /*
 |--------------------------------------------------------------------------
 | Dashboard Routes
@@ -81,6 +82,8 @@ Route::group([
 
             /***********************************Start Suppliers ******************************** */
             Route::resource('Suppliers', SupplierController::class);
+            Route::get('images/{id}', [SupplierController::class, 'addImages'])->name('supplier_gallery_image');
+            Route::post('saveImage', [SupplierController::class, 'saveSupplierImage'])->name('supplier_gallery_image_store');
             /***********************************End Suppliers ******************************** */
 
             /***********************************Start Services ******************************** */
