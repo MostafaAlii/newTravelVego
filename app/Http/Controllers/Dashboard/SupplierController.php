@@ -4,6 +4,7 @@ use App\Http\Controllers\Controller;
 use App\Interfaces\Suppliers\SupplierRepositoryInterface;
 use App\Http\Requests\Dashboard\SuppliersRequest;
 use Illuminate\Http\Request;
+use App\Models\Supplier;
 class SupplierController extends Controller {
     protected $Suppliers;
     public function __construct(SupplierRepositoryInterface $Suppliers) {
@@ -22,18 +23,21 @@ class SupplierController extends Controller {
     }
 
     public function show($id) {
-        //
+        return $this->Suppliers->show($id);
     }
 
-    public function edit($id) {
-        //
-    }
-
-    public function update(Request $request, $id) {
-        //
+    public function update(Request $request) {
+        return $this->Suppliers->update($request);
     }
 
     public function destroy(Request $request) {
         return $this->Suppliers->destroy($request);
+    }
+
+    public function upload(Request $request,Supplier $supplier) {
+        if($request->hasFile('photo')) {
+            $supplier->addMedia($request->photo)->toMediaCollection();
+        }
+        return redirect()->back();
     }
 }

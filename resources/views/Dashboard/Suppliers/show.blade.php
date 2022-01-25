@@ -7,11 +7,13 @@
 <link href="{{URL::asset('assets/Dashboard/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
 <link href="{{URL::asset('assets/Dashboard/plugins/notify/css/notifIt.css')}}" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/switchery/0.8.2/switchery.min.css" rel="stylesheet">
+<link href="{{URL::asset('assets/Dashboard/file-uploaders/dropzone.min.css')}}" rel="stylesheet">
 <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <script async defer
 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqxiPxkv5Gw46jSkwDJ3GfVflUyy08skI&callback=initMap">
 </script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/min/dropzone.min.css" integrity="sha512-bbUR1MeyQAnEuvdmss7V2LclMzO+R9BzRntEE57WIKInFVQjvX7l7QZSxjNDt8bg41Ww05oHSh0ycKFijqD7dA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqxiPxkv5Gw46jSkwDJ3GfVflUyy08skI&libraries=places&callback=initAutocomplete&language=ar&region=EG
          async defer"></script>
 @endsection
@@ -45,7 +47,8 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqxiPxkv5Gw46jSkwDJ3GfVfl
                             <div class="main-profile-overview">
                                 <!-- Start main-img-user profile-user -->
                                 <div class="main-img-user profile-user">
-                                    <img alt="" src="{{$userProfile->image_path}}"><a class="fas fa-camera profile-edit" href="JavaScript:void(0);"></a>
+                                    <img alt="" src="{{--Url::asset('Dashboard/image/suppliers/' . $userProfile->image->filename)--}}">
+                                    <a class="fas fa-camera profile-edit" href="JavaScript:void(0);"></a>
                                 </div>
                                 <!-- End main-img-user profile-user -->
                                 <!-- Start profile-user-name -->
@@ -59,7 +62,7 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqxiPxkv5Gw46jSkwDJ3GfVfl
                                 <!-- Start Description -->
                                 <h6>{{ trans('dashboard/supplier.supplier_description') }}</h6>
                                 <div class="main-profile-bio">
-                                    {!! $userProfile->description !!}
+                                    {!! \Str::limit($userProfile->description, 35) !!}
                                 </div>
                                 <!-- End Description -->
                                 <hr class="mg-y-30">
@@ -154,55 +157,30 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqxiPxkv5Gw46jSkwDJ3GfVfl
                             </div>
 
                             <div class="tab-pane" id="profile">
+                                <form method="post"  action="{{ route('supplierGalleryUpload', $userProfile->id) }}" autocomplete="off" enctype="multipart/form-data">
+                                    {{ csrf_field() }}
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="academic_year">{{ trans('dashboard/supplier.supplier_attachment') }} : <span class="text-danger">*</span></label>
+                                            <input type="file" accept="image/*" name="photo" multiple>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 text-center">
+                                        <button class="btn btn-success text-center nextBtn btn-lg pull-right" type="submit">
+                                            <i class="las la-cloud-upload-alt"></i>
+                                            {{ trans('dashboard/supplier.supplier_attachment_upload') }}
+                                        </button>
+                                    </div>
+                                </form>
+                                <hr>
                                 <div class="row">
-                                    <div class="col-sm-4">
-                                        <div class="border p-1 card thumb">
-                                            <a href="#" class="image-popup" title="Screenshot-2"> <img src="{{URL::asset('assets/img/photos/7.jpg')}}" class="thumb-img" alt="work-thumbnail"> </a>
-                                            <h4 class="text-center tx-14 mt-3 mb-0">Gallary Image</h4>
-                                            <div class="ga-border"></div>
-                                            <p class="text-muted text-center"><small>Photography</small></p>
+                                    @foreach($userGallery as $photo)
+                                        <div class="col-sm-4">
+                                            <div class="border p-1 card thumb">
+                                                <img src="{{$photo->getPath()}}" class="thumb-img" alt="work-thumbnail">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class=" border p-1 card thumb">
-                                            <a href="#" class="image-popup" title="Screenshot-2"> <img src="{{URL::asset('assets/img/photos/8.jpg')}}" class="thumb-img" alt="work-thumbnail"> </a>
-                                            <h4 class="text-center tx-14 mt-3 mb-0">Gallary Image</h4>
-                                            <div class="ga-border"></div>
-                                            <p class="text-muted text-center"><small>Photography</small></p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class=" border p-1 card thumb">
-                                            <a href="#" class="image-popup" title="Screenshot-2"> <img src="{{URL::asset('assets/img/photos/9.jpg')}}" class="thumb-img" alt="work-thumbnail"> </a>
-                                            <h4 class="text-center tx-14 mt-3 mb-0">Gallary Image</h4>
-                                            <div class="ga-border"></div>
-                                            <p class="text-muted text-center"><small>Photography</small></p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class=" border p-1 card thumb  mb-xl-0">
-                                            <a href="#" class="image-popup" title="Screenshot-2"> <img src="{{URL::asset('assets/img/photos/10.jpg')}}" class="thumb-img" alt="work-thumbnail"> </a>
-                                            <h4 class="text-center tx-14 mt-3 mb-0">Gallary Image</h4>
-                                            <div class="ga-border"></div>
-                                            <p class="text-muted text-center"><small>Photography</small></p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class=" border p-1 card thumb  mb-xl-0">
-                                            <a href="#" class="image-popup" title="Screenshot-2"> <img src="{{URL::asset('assets/img/photos/6.jpg')}}" class="thumb-img" alt="work-thumbnail"> </a>
-                                            <h4 class="text-center tx-14 mt-3 mb-0">Gallary Image</h4>
-                                            <div class="ga-border"></div>
-                                            <p class="text-muted text-center"><small>Photography</small></p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class=" border p-1 card thumb  mb-xl-0">
-                                            <a href="#" class="image-popup" title="Screenshot-2"> <img src="{{URL::asset('assets/img/photos/5.jpg')}}" class="thumb-img" alt="work-thumbnail"> </a>
-                                            <h4 class="text-center tx-14 mt-3 mb-0">Gallary Image</h4>
-                                            <div class="ga-border"></div>
-                                            <p class="text-muted text-center"><small>Photography</small></p>
-                                        </div>
-                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
 
@@ -269,7 +247,7 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqxiPxkv5Gw46jSkwDJ3GfVfl
 <script src="{{URL::asset('assets/Dashboard/plugins/notify/js/notifIt-custom.js')}}"></script>
 <script src="{{URL::asset('assets/Dashboard/plugins/select2/js/select2.full.min.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/switchery/0.8.2/switchery.min.js"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/min/dropzone.min.js" integrity="sha512-9WciDs0XP20sojTJ9E7mChDXy6pcO0qHpwbEJID1YVavz2H6QBz5eLoDD8lseZOb2yGT8xDNIV7HIe1ZbuiDWg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
     $("#pac-input").focusin(function() {
         $(this).val('');
@@ -459,5 +437,7 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqxiPxkv5Gw46jSkwDJ3GfVfl
      async
    ></script>
 
+   <script>
 
+</script>
 @endsection

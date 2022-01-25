@@ -20,11 +20,15 @@
                 <div class="modal-body">
                     <!-- Start Image Preview -->
                     <div class="form-group">
-                        <img src="{{ $supplier->image_path }} "id="output"  style="width: 65px; height:65px;" class="rounded-circle image-preview mx-auto d-block" alt="">
+                        @if($supplier->image)
+                            <img style="width:65px; height:65px;border-radius: 5px;" class="rounded-circle" src="{{Url::asset('Dashboard/image/suppliers/' . $supplier->image->filename)}}" alt="" />
+                        @else
+                            <img style="width:65px; height:65px;border-radius: 5px;" class="rounded-circle" src="{{Url::asset('Dashboard/image/suppliers/deafult_supplier.png')}}" alt="" />
+                        @endif
                     </div>
                     <br>
                     <div class="custom-file">
-                        <input type="file" name="image" class="custom-file-input" onchange="loadFile(event)" id="customFileLang">
+                        <input type="file" name="photo" class="custom-file-input" onchange="loadFile(event)" id="customFileLang">
                         <label class="custom-file-label" for="customFileLang"></label>
                     </div>
                     <br><br>
@@ -110,7 +114,7 @@
                                     <optgroup label="{{ trans('dashboard/supplier.country') }}">
                                         @if($countries && $countries -> count() > 0)
                                             @foreach($countries as $country)
-                                                <option value="{{$country->id }}">
+                                                <option value="{{$country->id }}" {{$country->id == $supplier->country_id ? 'selected' : '' }}>
                                                     {{$country->name}}
                                                 </option>
                                             @endforeach
@@ -128,11 +132,11 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="provience">{{ trans('dashboard/supplier.provience') }}</label>
-                                <select id="provience" name="provience_id" class="form-control">
+                                <select id="provience" name="" class="form-control">
                                     <optgroup label="{{ trans('dashboard/city.related_province') }}">
                                         @if($proviences && $proviences -> count() > 0)
                                             @foreach($proviences as $provience)
-                                                <option value="{{$provience->id }}">
+                                                <option value="{{$provience->id }}" {{$provience->id == $supplier->provience_id ? 'selected' : '' }}>
                                                     {{$provience->name}}
                                                 </option>
                                             @endforeach
@@ -154,7 +158,7 @@
                                     <optgroup label="{{ trans('dashboard/supplier.related_city') }}">
                                         @if($cities && $cities -> count() > 0)
                                             @foreach($cities as $city)
-                                                <option value="{{$city->id }}">
+                                                <option value="{{$city->id }}" {{$city->id == $supplier->city_id ? 'selected' : '' }}>
                                                     {{$city->name}}
                                                 </option>
                                             @endforeach
@@ -176,7 +180,7 @@
                                     <optgroup label="{{ trans('dashboard/supplier.related_area') }}">
                                         @if($areas && $areas -> count() > 0)
                                             @foreach($areas as $area)
-                                                <option value="{{$area->id }}">
+                                                <option value="{{$area->id }}" {{$area->id == $supplier->area_id ? 'selected' : '' }}>
                                                     {{$area->name}}
                                                 </option>
                                             @endforeach
@@ -201,7 +205,7 @@
                                     <optgroup label="{{ trans('dashboard/supplier.category') }}">
                                         @if($categories && $categories -> count() > 0)
                                             @foreach($categories as $category)
-                                                <option value="{{$category->id }}">
+                                                <option value="{{$category->id }}" {{$category->id == $supplier->category_id ? 'selected' : '' }}>
                                                     {{$category->name}}
                                                 </option>
                                             @endforeach
@@ -222,7 +226,7 @@
                                     <optgroup label="{{ trans('dashboard/supplier.subCategory') }}">
                                         @if($subCategories && $subCategories -> count() > 0)
                                             @foreach($subCategories as $subCategory)
-                                                <option value="{{$subCategory->id }}">
+                                                <option value="{{$subCategory->id }}" {{$subCategory->id == $supplier->subCategory_id ? 'selected' : '' }}>
                                                     {{$subCategory->name}}
                                                 </option>
                                             @endforeach

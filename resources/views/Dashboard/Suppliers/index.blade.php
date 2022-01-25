@@ -56,7 +56,6 @@
                                             <th class="border-bottom-0">{{ trans('dashboard/supplier.supplier_email') }}</th>
                                             <th class="border-bottom-0">{{ trans('dashboard/supplier.name') }}</th>
                                             <th class="border-bottom-0">{{ trans('dashboard/supplier.avatar_photo') }}</th>
-                                            <th class="border-bottom-0">{{ trans('dashboard/supplier.supplier_related_group') }}</th>
                                             <th class="border-bottom-0">{{ trans('dashboard/supplier.phone_number') }}</th>
                                             <th class="border-bottom-0">{{ trans('dashboard/supplier.supplier_status') }}</th>
                                             <th class="border-bottom-0">{{ trans('dashboard/sections.section_created_at') }}</th>
@@ -79,7 +78,6 @@
                                                         <img style="width:65px; height:65px;border-radius: 5px;" class="rounded-circle" src="{{Url::asset('Dashboard/image/suppliers/deafult_supplier.png')}}" alt="" />
                                                     @endif
                                                 </td>
-                                                <td>{{ $supplier->group->name }}</td>
                                                 <td>{{ $supplier->phone }}</td>
                                                 <td>
                                                     <span class="font-weight-bold badge badge-pill badge-{{ $supplier->status == 1 ? 'success' : 'danger'  }}">
@@ -99,7 +97,7 @@
                                                     </a>
                                                 </td>
                                             </tr>
-                                            {{--@include('Dashboard.Suppliers.btn.edit')--}}
+                                            @include('Dashboard.Suppliers.btn.edit')
                                             @include('Dashboard.Suppliers.btn.delete')
                                         @endforeach()
                                     </tbody>

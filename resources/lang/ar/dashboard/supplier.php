@@ -75,4 +75,8 @@ return [
     'supplier_address_location'                 =>              'عنوان الموقع',
     'supplier_related_group'                    =>              'الفـئـة التابعة',
     'supplier_related_country'                  =>              'المدينة التابعة',
+    'supplier_gallery_pic'                      =>              'معرض الصور',
+    'supplier_image'                            =>              'صور المورد',
+    'supplier_attachment'                       =>              'المرفقات',
+    'supplier_attachment_upload'                =>              'ارفاق الصور',
 ];

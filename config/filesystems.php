@@ -56,6 +56,13 @@ return [
             'visibility' => 'public',
         ],
 
+        'supplier_gallery' => [
+            'driver' => 'local',
+            'root' => public_path('Dashboard/image/suppliers/gallery'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
