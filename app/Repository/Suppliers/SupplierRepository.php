@@ -8,10 +8,12 @@ use App\Models\Currency;
 use App\Models\Group;
 use App\Models\Provience;
 use App\Models\Supplier;
+use App\Models\Gallery;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\Interfaces\Suppliers\SupplierRepositoryInterface;
 use App\Http\Traits\Dashboard\Upload;
+use App\Http\Traits\Dashboard\UploadGallery;
 class SupplierRepository implements SupplierRepositoryInterface {
     use Upload;
     public function index() {
@@ -33,7 +35,9 @@ class SupplierRepository implements SupplierRepositoryInterface {
 
     public function show($id) {
         $userProfile = Supplier::find($id);
-        return view('Dashboard.Suppliers.show', compact('userProfile'));
+        $userGallery = $userProfile->getMedia(); 
+        //dd($userGallery);
+        return view('Dashboard.Suppliers.show', compact('userProfile', 'userGallery'));
     }
     public function create() {
         $groups = Group::all();
@@ -146,5 +150,9 @@ class SupplierRepository implements SupplierRepositoryInterface {
         } else{
 
         }
+    }
+
+    public function upload(Supplier $supplier) {
+
     }
 }

@@ -47,7 +47,8 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqxiPxkv5Gw46jSkwDJ3GfVfl
                             <div class="main-profile-overview">
                                 <!-- Start main-img-user profile-user -->
                                 <div class="main-img-user profile-user">
-                                    <img alt="" src="{{--$userProfile->image_path --}}"><a class="fas fa-camera profile-edit" href="JavaScript:void(0);"></a>
+                                    <img alt="" src="{{--Url::asset('Dashboard/image/suppliers/' . $userProfile->image->filename)--}}">
+                                    <a class="fas fa-camera profile-edit" href="JavaScript:void(0);"></a>
                                 </div>
                                 <!-- End main-img-user profile-user -->
                                 <!-- Start profile-user-name -->
@@ -156,61 +157,30 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqxiPxkv5Gw46jSkwDJ3GfVfl
                             </div>
 
                             <div class="tab-pane" id="profile">
-                                <div style="text-align: center" class="small-4 medium-4 large-4 columns">
-                                    <a class="modal-effect btn btn-lg btn-success text-center" data-effect="effect-scale" data-toggle="modal" href="#upload{{$userProfile->id}}">
-                                        <i class="las la-cloud-upload-alt"></i>
-                                    </a>
-                                </div>
+                                <form method="post"  action="{{ route('supplierGalleryUpload', $userProfile->id) }}" autocomplete="off" enctype="multipart/form-data">
+                                    {{ csrf_field() }}
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="academic_year">{{ trans('dashboard/supplier.supplier_attachment') }} : <span class="text-danger">*</span></label>
+                                            <input type="file" accept="image/*" name="photo" multiple>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 text-center">
+                                        <button class="btn btn-success text-center nextBtn btn-lg pull-right" type="submit">
+                                            <i class="las la-cloud-upload-alt"></i>
+                                            {{ trans('dashboard/supplier.supplier_attachment_upload') }}
+                                        </button>
+                                    </div>
+                                </form>
                                 <hr>
                                 <div class="row">
-                                    <div class="col-sm-4">
-                                        <div class="border p-1 card thumb">
-                                            <a href="#" class="image-popup" title="Screenshot-2"> <img src="{{URL::asset('assets/img/photos/7.jpg')}}" class="thumb-img" alt="work-thumbnail"> </a>
-                                            <h4 class="text-center tx-14 mt-3 mb-0">Gallary Image</h4>
-                                            <div class="ga-border"></div>
-                                            <p class="text-muted text-center"><small>Photography</small></p>
+                                    @foreach($userGallery as $photo)
+                                        <div class="col-sm-4">
+                                            <div class="border p-1 card thumb">
+                                                <img src="{{$photo->getPath()}}" class="thumb-img" alt="work-thumbnail">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class=" border p-1 card thumb">
-                                            <a href="#" class="image-popup" title="Screenshot-2"> <img src="{{URL::asset('assets/img/photos/8.jpg')}}" class="thumb-img" alt="work-thumbnail"> </a>
-                                            <h4 class="text-center tx-14 mt-3 mb-0">Gallary Image</h4>
-                                            <div class="ga-border"></div>
-                                            <p class="text-muted text-center"><small>Photography</small></p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class=" border p-1 card thumb">
-                                            <a href="#" class="image-popup" title="Screenshot-2"> <img src="{{URL::asset('assets/img/photos/9.jpg')}}" class="thumb-img" alt="work-thumbnail"> </a>
-                                            <h4 class="text-center tx-14 mt-3 mb-0">Gallary Image</h4>
-                                            <div class="ga-border"></div>
-                                            <p class="text-muted text-center"><small>Photography</small></p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class=" border p-1 card thumb  mb-xl-0">
-                                            <a href="#" class="image-popup" title="Screenshot-2"> <img src="{{URL::asset('assets/img/photos/10.jpg')}}" class="thumb-img" alt="work-thumbnail"> </a>
-                                            <h4 class="text-center tx-14 mt-3 mb-0">Gallary Image</h4>
-                                            <div class="ga-border"></div>
-                                            <p class="text-muted text-center"><small>Photography</small></p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class=" border p-1 card thumb  mb-xl-0">
-                                            <a href="#" class="image-popup" title="Screenshot-2"> <img src="{{URL::asset('assets/img/photos/6.jpg')}}" class="thumb-img" alt="work-thumbnail"> </a>
-                                            <h4 class="text-center tx-14 mt-3 mb-0">Gallary Image</h4>
-                                            <div class="ga-border"></div>
-                                            <p class="text-muted text-center"><small>Photography</small></p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class=" border p-1 card thumb  mb-xl-0">
-                                            <a href="#" class="image-popup" title="Screenshot-2"> <img src="{{URL::asset('assets/img/photos/5.jpg')}}" class="thumb-img" alt="work-thumbnail"> </a>
-                                            <h4 class="text-center tx-14 mt-3 mb-0">Gallary Image</h4>
-                                            <div class="ga-border"></div>
-                                            <p class="text-muted text-center"><small>Photography</small></p>
-                                        </div>
-                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
 
@@ -246,7 +216,6 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqxiPxkv5Gw46jSkwDJ3GfVfl
             <!-- End Col-lg-8 -->
         </div>
         <!-- End row -->
-        @include('Dashboard.Suppliers.btn.upload')
     </div>
     <!-- Container closed -->
 </div>
@@ -471,59 +440,4 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqxiPxkv5Gw46jSkwDJ3GfVfl
    <script>
 
 </script>
-
-<script>
-    var uploadedDocumentMap = {}
-   Dropzone.options.dpzMultipleFiles = {
-       paramName: "dzfile", // The name that will be used to transfer the file
-       //autoProcessQueue: false,
-       maxFilesize: 5, // MB
-       clickable: true,
-       addRemoveLinks: true,
-       acceptedFiles: 'image/*',
-       dictFallbackMessage: " المتصفح الخاص بكم لا يدعم خاصيه تعدد الصوره والسحب والافلات ",
-       dictInvalidFileType: "لايمكنك رفع هذا النوع من الملفات ",
-       dictCancelUpload: "الغاء الرفع ",
-       dictCancelUploadConfirmation: " هل انت متاكد من الغاء رفع الملفات ؟ ",
-       dictRemoveFile: "حذف الصوره",
-       dictMaxFilesExceeded: "لايمكنك رفع عدد اكثر من هضا ",
-       headers: {
-           'X-CSRF-TOKEN':
-               "{{ csrf_token() }}"
-       }
-       ,
-       url: "{{ route('supplier_gallery_image_store') }}", // Set the url
-       success:
-           function (file, response) {
-               $('form').append('<input type="hidden" name="document[]" value="' + response.name + '">')
-               uploadedDocumentMap[file.name] = response.name
-           }
-       ,
-       removedfile: function (file) {
-           file.previewElement.remove()
-           var name = ''
-           if (typeof file.file_name !== 'undefined') {
-               name = file.file_name
-           } else {
-               name = uploadedDocumentMap[file.name]
-           }
-           $('form').find('input[name="document[]"][value="' + name + '"]').remove()
-       }
-       ,
-       // previewsContainer: "#dpz-btn-select-files", // Define the container to display the previews
-       init: function () {
-               @if(isset($event) && $event->document)
-           var files =
-           {!! json_encode($event->document) !!}
-               for (var i in files) {
-               var file = files[i]
-               this.options.addedfile.call(this, file)
-               file.previewElement.classList.add('dz-complete')
-               $('form').append('<input type="hidden" name="document[]" value="' + file.file_name + '">')
-           }
-           @endif
-       }
-   }
-</script>
-
 @endsection

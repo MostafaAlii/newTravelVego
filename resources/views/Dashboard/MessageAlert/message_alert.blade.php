@@ -37,12 +37,12 @@
     </script>
 @endif
 
-@if (session()->has('wrong'))
+@if (session()->has('upload'))
     <script>
         window.onload = function() {
             notif({
-                msg: "{{ trans('dashboard/messages.wrong') }}",
-                type: "worning",
+                msg: "{{ trans('dashboard/messages.upload') }}",
+                type: "success",
                 position: "right"
             });
         }

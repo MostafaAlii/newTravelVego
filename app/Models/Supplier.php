@@ -5,8 +5,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-class Supplier extends Authenticatable {
-    use HasFactory, Notifiable, HasApiTokens, Translatable;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+class Supplier extends Authenticatable implements HasMedia {
+    use HasFactory, Notifiable, HasApiTokens, Translatable, InteractsWithMedia;
     protected $table = 'suppliers';
     protected $guarded = [];
     public $translatedAttributes = ['first_name', 'last_name', 'company_name', 'description', 'address_primary', 'address_secondry'];
@@ -20,27 +22,33 @@ class Supplier extends Authenticatable {
     public function image() {
         return $this->morphOne(Image::class, 'imageable');
     }
-
-    public function country(){
+    public function album() {
+        return $this->belongsTo(Album::class, 'album_id');
+    }
+    public function country() {
         return $this->belongsTo(Country::class, 'country_id');
     }
-    public function provience(){
+    public function provience() {
         return $this->belongsTo(Provience::class, 'provience_id');
     }
-    public function city(){
+    public function city() {
         return $this->belongsTo(City::class, 'city_id');
     }
-    public function area(){
+    public function area() {
         return $this->belongsTo(Area::class, 'area_id');
     }
-    public function currency(){
+    public function currency() {
         return $this->belongsTo(Currency::class, 'currency_id');
     }
-    public function group(){
+    public function group() {
         return $this->belongsTo(Group::class, 'group_id');
     }
     public function category() {
         return $this->belongsTo(Category::class, 'category_id');
+    }
+    // One To Many , Morph Many , Sypplier HasMany Images
+    public function gallery() {
+        return $this->morphMany(Gallery::class, 'imageable');
     }
     protected $hidden = [
         'password',

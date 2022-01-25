@@ -18,9 +18,3 @@ if(!function_exists('user_guard')){
         return auth('web');
     }
 }
-
-function uploadImage($folder,$image){
-    $image->store('/', $folder);
-    $filename = $image->hashName();
-    return  $filename;
- }
