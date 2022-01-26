@@ -33,11 +33,8 @@ class SupplierController extends Controller {
     public function destroy(Request $request) {
         return $this->Suppliers->destroy($request);
     }
-
+    
     public function upload(Request $request,Supplier $supplier) {
-        if($request->hasFile('photo')) {
-            $supplier->addMedia($request->photo)->toMediaCollection();
-        }
-        return redirect()->back();
+        return $this->Suppliers->upload($request, $supplier);
     }
 }

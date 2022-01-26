@@ -5,26 +5,22 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
-class Supplier extends Authenticatable implements HasMedia {
-    use HasFactory, Notifiable, HasApiTokens, Translatable, InteractsWithMedia;
+class Supplier extends Authenticatable {
+    use HasFactory, Notifiable, HasApiTokens, Translatable;
     protected $table = 'suppliers';
     protected $guarded = [];
     public $translatedAttributes = ['first_name', 'last_name', 'company_name', 'description', 'address_primary', 'address_secondry'];
-    protected $appends = ['image_path', 'barcode_path'];
+    protected $appends = ['barcode_path'];
     public $timestamps = true;
 
-    public function getImagePathAttribute() {
-        return asset('' . $this->image);
+    public function getBarcodePathAttribute() {
+        return asset('uploads/supplierBarCode/' . $this->code);
     }
     // Get Supplier Image ::
     public function image() {
         return $this->morphOne(Image::class, 'imageable');
     }
-    public function album() {
-        return $this->belongsTo(Album::class, 'album_id');
-    }
+    
     public function country() {
         return $this->belongsTo(Country::class, 'country_id');
     }
@@ -46,9 +42,9 @@ class Supplier extends Authenticatable implements HasMedia {
     public function category() {
         return $this->belongsTo(Category::class, 'category_id');
     }
-    // One To Many , Morph Many , Sypplier HasMany Images
+    // One To Many , Morph Many , Sypplier HasMany Images in Own Gallery
     public function gallery() {
-        return $this->morphMany(Gallery::class, 'imageable');
+        return $this->morphMany(Gallery::class, 'galleriable');
     }
     protected $hidden = [
         'password',

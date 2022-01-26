@@ -35,9 +35,9 @@ class SupplierRepository implements SupplierRepositoryInterface {
 
     public function show($id) {
         $userProfile = Supplier::find($id);
-        $userGallery = $userProfile->getMedia(); 
+        //$userGallery = $userProfile->gallery;
         //dd($userGallery);
-        return view('Dashboard.Suppliers.show', compact('userProfile', 'userGallery'));
+        return view('Dashboard.Suppliers.show', compact('userProfile'));
     }
     public function create() {
         $groups = Group::all();
@@ -152,7 +152,25 @@ class SupplierRepository implements SupplierRepositoryInterface {
         }
     }
 
-    public function upload(Supplier $supplier) {
+    public function upload($request, $supplier) {
+        /*if($request->hasFile('photo')) {
+            $supplier->addMedia($request->photo)->toMediaCollection();
+        }
+        return redirect()->back();*/
+        foreach($request->file('photos') as $file)
+        {
+            $folderName = $supplier->first_name . '_' . $supplier->last_name . $supplier->phone; 
+            $name = $file->getClientOriginalName();
+            $file->storeAs('suppliers/gallery/'.$folderName, $file->getClientOriginalName(),'upload_image');
 
+            // insert in image_table
+            $galleries= new Gallery();
+            $galleries->filename=$name;
+            $galleries->galleriable_id= $supplier->id;
+            $galleries->galleriable_type = 'App\Models\Supplier';
+            $galleries->save();
+        }
+        session()->flash('upload');
+        return redirect()->back();
     }
 }
