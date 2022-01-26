@@ -6,5 +6,7 @@ interface SupplierRepositoryInterface {
     public function store($request);
     public function update($request);
     public function show($id);
+    public function upload($request, $supplier);
     public function destroy($request);
+
 }

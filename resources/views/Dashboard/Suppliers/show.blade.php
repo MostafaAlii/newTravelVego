@@ -47,7 +47,7 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqxiPxkv5Gw46jSkwDJ3GfVfl
                             <div class="main-profile-overview">
                                 <!-- Start main-img-user profile-user -->
                                 <div class="main-img-user profile-user">
-                                    <img alt="" src="{{--Url::asset('Dashboard/image/suppliers/' . $userProfile->image->filename)--}}">
+                                    <img alt="" src="{{Url::asset('Dashboard/image/suppliers/' . $userProfile->image->filename)}}">
                                     <a class="fas fa-camera profile-edit" href="JavaScript:void(0);"></a>
                                 </div>
                                 <!-- End main-img-user profile-user -->
@@ -162,7 +162,7 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqxiPxkv5Gw46jSkwDJ3GfVfl
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="academic_year">{{ trans('dashboard/supplier.supplier_attachment') }} : <span class="text-danger">*</span></label>
-                                            <input type="file" accept="image/*" name="photo" multiple>
+                                            <input type="file" accept="image/*" name="photos[]" multiple>
                                         </div>
                                     </div>
                                     <div class="col-md-12 text-center">
@@ -174,13 +174,13 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqxiPxkv5Gw46jSkwDJ3GfVfl
                                 </form>
                                 <hr>
                                 <div class="row">
-                                    @foreach($userGallery as $photo)
+                                    {{--@foreach($userGallery as $photo)
                                         <div class="col-sm-4">
                                             <div class="border p-1 card thumb">
                                                 <img src="{{$photo->getPath()}}" class="thumb-img" alt="work-thumbnail">
                                             </div>
                                         </div>
-                                    @endforeach
+                                    @endforeach--}}
                                 </div>
                             </div>
 
