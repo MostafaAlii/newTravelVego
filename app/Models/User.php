@@ -5,16 +5,23 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Notifications\Auth\ResetPasswordNotification;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
-class User extends Authenticatable
+use Tymon\JWTAuth\Contracts\JWTSubject;
+class User extends Authenticatable implements JWTSubject
 {
-    use HasFactory, Notifiable, HasApiTokens, Translatable;
+    use HasFactory, Notifiable, Translatable;
     protected $table = 'users';
     protected $guarded  = [];
     protected $with = ['translations'];
     public $translatedAttributes = ['first_name', 'last_name', 'company_name', 'description', 'address_primary', 'address_secondry'];
     protected $appends = ['image_path', 'barcode_path'];
     public $timestamps = true;
+
+    public function getJWTIdentifier() {
+        return $this->getKey();
+    }
+    public function getJWTCustomClaims() {
+        return [];
+    }
 
     public function getImagePathAttribute() {
         return asset('uploads/suppliersImage/' . $this->image);
