@@ -41,7 +41,8 @@ class AuthApiController extends Controller {
         $token = $request->header('auth-token');
         if($token){
             try {
-                JWTAuth::setToken($token)->invalidate(); //logout
+                Auth::guard('supplier-api')->logout();
+                //JWTAuth::setToken($token)->invalidate(); //logout
             }catch (TokenInvalidException $ex){
                 return $this->returnErrorMessage('E3001',__('api/errors_msg.error'));
             }
