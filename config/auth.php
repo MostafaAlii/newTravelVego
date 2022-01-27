@@ -45,14 +45,19 @@ return [
             'provider' => 'admins',
         ],
 
-        'supplier' => [
-            'driver'    => 'sanctum',
+        'admin-api' => [
+            'driver' => 'jwt',
+            'provider' => 'admins',
+        ],
+
+        'supplier-api' => [
+            'driver'    => 'jwt',
             'provider'  => 'suppliers',
         ],
 
-        'member' => [
-            'driver'    => 'sanctum',
-            'provider'  => 'members',
+        'user-api' => [
+            'driver'    => 'jwt',
+            'provider'  => 'users',
         ],
     ],
 
@@ -84,12 +89,8 @@ return [
         ],
          'suppliers' => [
              'driver' => 'eloquent',
-             'table' => \App\Models\Supplier::class,
-         ],
-         'members' => [
-            'driver' => 'eloquent',
-            'table' => \App\Models\Members::class,
-        ],
+             'model' => \App\Models\Supplier::class,
+         ]
     ],
 
     /*
@@ -110,6 +111,12 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'suppliers' => [
+            'provider' => 'suppliers',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

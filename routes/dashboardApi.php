@@ -1,7 +1,9 @@
 <?php
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Dashboard\Api\Auth\Supplier\AuthApiController;
+use App\Http\Controllers\Dashboard\Api\GroupsApi\GroupsApiController;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Api\AuthController;
+/*use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\Auth\NewPasswordController;
 use App\Http\Controllers\Api\Category\CategoryApiController;
 use App\Http\Controllers\Api\Country\CountriesApiController;
@@ -10,7 +12,7 @@ use App\Http\Controllers\Api\City\CitiesApiController;
 use App\Http\Controllers\Api\Area\AreasApiController;
 use App\Http\Controllers\Api\Currency\CurrenciesApiController;
 use App\Http\Controllers\Api\CountryCode\CountryCodeApiController;
-use App\Http\Controllers\Api\Supplier\SupplierApiController;
+use App\Http\Controllers\Api\Supplier\SupplierApiController;*/
 /*
 |--------------------------------------------------------------------------
 | Dahboard API Routes
@@ -22,7 +24,7 @@ use App\Http\Controllers\Api\Supplier\SupplierApiController;
 |
 */
 // All Api Here Must Be Authenticated
-Route::middleware(['auth:sanctum'])->group( function () {
+/*Route::middleware(['auth:sanctum'])->group( function () {
     Route::get('/user', [AuthController::class, 'getUserInfo']);
     Route::post('/sign-out', [AuthController::class, 'signOut']);
 });
@@ -59,4 +61,23 @@ Route::middleware(['guest:sanctum'])->group( function () {
     // Supplier ::
     Route::get('Supplier/{id}/show', [SupplierApiController::class, 'getSupplierById']);
     Route::post('Supplier/edit/{id}', [SupplierApiController::class, 'updateSupplierInfo']);
+});*/
+
+// Non Authenticated Api Route
+
+Route::group(['middleware' => ['api'], 'namespace' => 'Api'], function (){
+
+    Route::group(['prefix'=>'supplier', 'namespace' => 'Supplier'], function() {
+        Route::post('login', [AuthApiController::class, 'login']);
+    });
+    // Groups ::
+    Route::group(['prefix'=>'groups'], function() {
+        Route::get('getGroups', [GroupsApiController::class, 'index']);
+        Route::post('Group/show', [GroupsApiController::class, 'getGroupById']);
+    });
+});
+
+// Authenticated Api Route
+Route::group(['middleware' => ['api', 'assign.guard:supplier-api'], 'namespace' => 'Api'], function (){
+    Route::post('logout', [AuthApiController::class, 'logout']);
 });

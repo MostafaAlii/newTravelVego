@@ -4,15 +4,22 @@ use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
-class Supplier extends Authenticatable {
-    use HasFactory, Notifiable, HasApiTokens, Translatable;
+use Tymon\JWTAuth\Contracts\JWTSubject;
+class Supplier extends Authenticatable implements JWTSubject {
+    use HasFactory, Notifiable, Translatable;
     protected $table = 'suppliers';
     protected $guarded = [];
     public $translatedAttributes = ['first_name', 'last_name', 'company_name', 'description', 'address_primary', 'address_secondry'];
     protected $appends = ['barcode_path'];
     public $timestamps = true;
 
+    public function getJWTIdentifier() {
+        return $this->getKey();
+    }
+    public function getJWTCustomClaims() {
+        return [];
+    }
+    
     public function getBarcodePathAttribute() {
         return asset('uploads/supplierBarCode/' . $this->code);
     }
