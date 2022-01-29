@@ -17,7 +17,6 @@
             <h4 class="content-title mb-0 my-auto">{{ trans('dashboard/supplier.supplier_title_in_sidebar') }}</h4>
             <span class="text-muted mt-1 tx-13 mr-2 mb-0"></span>
         </div>
-
     </div>
     <div class="d-flex my-xl-auto right-content">
         <div class="pr-1 mb-3 mb-xl-0">
@@ -50,9 +49,6 @@
                                     <thead>
                                         <tr>
                                             <th class="border-bottom-0">#</th>
-                                            <th class="border-bottom-0">
-                                                <input name="select_all" id="example-select-all" type="checkbox" />
-                                            </th>
                                             <th class="border-bottom-0">{{ trans('dashboard/supplier.supplier_email') }}</th>
                                             <th class="border-bottom-0">{{ trans('dashboard/supplier.name') }}</th>
                                             <th class="border-bottom-0">{{ trans('dashboard/supplier.avatar_photo') }}</th>
@@ -66,9 +62,6 @@
                                         @foreach($suppliers as $supplier)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>
-                                                    <input name="delete_select" class="delete_select" value="{{$supplier->id}}" type="checkbox" />
-                                                </td>
                                                 <td>{{ $supplier->email }}</td>
                                                 <td>{{ $supplier->first_name . ' ' . $supplier->last_name }}</td>
                                                 <td>
@@ -86,16 +79,25 @@
                                                 </td>
                                                 <td>{{ $supplier->created_at->diffForHumans() }}</td>
                                                 <td>
-                                                    <a class="btn btn-sm btn-success" data-effect="effect-scale" href="Suppliers/{{$supplier->id}}">
-                                                        <i class="las la-eye"></i>
-                                                    </a>
-                                                    <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale" data-toggle="modal" href="#edit{{$supplier->id}}">
-                                                        <i class="las la-pen"></i>
-                                                    </a>
-                                                    <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale" data-toggle="modal" href="#delete{{$supplier->id}}">
-                                                        <i class="las la-trash"></i>
-                                                    </a>
-                                                </td>
+
+                                                    <div class="dropdown">
+                                                        <button aria-expanded="false" aria-haspopup="true" class="btn ripple btn-primary" data-toggle="dropdown" id="dropdownMenuButton" type="button">{{ trans('dashboard/general.processes') }}<i class="fas fa-caret-down ml-1"></i></button>
+                                                        <div  class="dropdown-menu tx-13">
+                                                            <a class="dropdown-item btn btn-sm text-success text-center" data-effect="effect-scale" href="Suppliers/{{$supplier->id}}">
+                                                                <i class="las la-eye"></i>
+                                                                {{ trans('dashboard/general.show') }}
+                                                            </a>
+                                                            <a class="dropdown-item modal-effect btn btn-sm text-info text-center" data-effect="effect-scale" data-toggle="modal" href="#edit{{$supplier->id}}">
+                                                                <i class="las la-pen"></i>
+                                                                {{ trans('dashboard/general.update') }}
+                                                            </a>
+                                                            <a class="dropdown-item modal-effect btn btn-sm text-danger text-center" data-effect="effect-scale" data-toggle="modal" href="#delete{{$supplier->id}}">
+                                                                <i class="las la-trash"></i>
+                                                                {{ trans('dashboard/general.delete') }}
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                <td>
                                             </tr>
                                             @include('Dashboard.Suppliers.btn.edit')
                                             @include('Dashboard.Suppliers.btn.delete')
@@ -141,16 +143,6 @@
 <script src="{{URL::asset('assets/Dashboard/plugins/notify/js/notifIt-custom.js')}}"></script>
 <script src="{{URL::asset('assets/Dashboard/plugins/select2/js/select2.full.min.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/switchery/0.8.2/switchery.min.js"></script>
-<script>
-    $(function(){
-        jQuery("[name=select_all]").click(function(source)) {
-            checkboxes = jQuery("[name=delete_select]");
-            for(var i in checkboxes) {
-                checkboxes[i].checked = source.target.checked;
-            }
-        });
-    })
-</script>
 <script>
     var loadFile = function (event) {
         var output = document.getElementById('output');

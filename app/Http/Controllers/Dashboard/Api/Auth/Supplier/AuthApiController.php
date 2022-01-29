@@ -45,7 +45,7 @@ class AuthApiController extends Controller {
             }catch (TokenInvalidException $ex){
                 return $this->returnErrorMessage('E3001',__('api/errors_msg.error'));
             }
-            return $this->returnSuccessMessage(__('api/errors_msg.logout_successfully'));
+            return $this->returnSuccessMessage('Success', __('api/errors_msg.logout_successfully'));
         }else{
             return $this->returnErrorMessage('E3001',__('api/errors_msg.error'));
         }
