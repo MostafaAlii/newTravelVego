@@ -79,4 +79,6 @@ return [
     'supplier_image'                            =>              'صور المورد',
     'supplier_attachment'                       =>              'المرفقات',
     'supplier_attachment_upload'                =>              'ارفاق الصور',
+    'supplier_info_deleted'                     =>              'حذف بيانات المورد',
+    'supplier_multi_delete'                     =>              'حذف مجموعة موردين',
 ];

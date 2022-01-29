@@ -64,11 +64,10 @@ Route::middleware(['guest:sanctum'])->group( function () {
 });*/
 
 // Non Authenticated Api Route
-
 Route::group(['middleware' => ['api'], 'namespace' => 'Api'], function (){
-
     Route::group(['prefix'=>'supplier', 'namespace' => 'Supplier'], function() {
         Route::post('login', [AuthApiController::class, 'login']);
+        Route::post('logout', [AuthApiController::class, 'logout'])->middleware('assign.guard:supplier-api');
     });
     // Groups ::
     Route::group(['prefix'=>'groups'], function() {
@@ -78,6 +77,6 @@ Route::group(['middleware' => ['api'], 'namespace' => 'Api'], function (){
 });
 
 // Authenticated Api Route
-Route::group(['middleware' => ['api', 'assign.guard:supplier-api'], 'namespace' => 'Api'], function (){
-    Route::post('logout', [AuthApiController::class, 'logout']);
-});
+/*Route::group(['middleware' => ['assign.guard:supplier-api']], function (){
+    
+});*/

@@ -9,26 +9,22 @@ class Product extends Model {
     protected $table = "products";
     protected $guarded  = [];
     protected $with = ['translations'];
-    protected $translatedAttributes = ['name', 'description', 'short_description'];
-
+    protected $translatedAttributes = ['product_name', 'avaliable_lang', 'description'];
     protected $casts = [
-        'is_active' => 'boolean',
+        'status' => 'boolean',
+        'vip' => 'boolean',
     ];
-
-    protected $dates = [
-        'special_price_start','special_price_end',
-        'start_date', 'end_date', 'deleted_at',
-    ];
+    protected $dates = ['deleted_at'];
 
     public function sections() {
-        return $this->belongsTo(Section::class, 'section_id');
+        return $this->belongsTo(Section::class, 'section_id', 'id');
     }
 
-    public function users() {
-        return $this->belongsTo(User::class, 'user_id');
+    public function suppliers() {
+        return $this->belongsTo(Supplier::class, 'supplier_id', 'id');
     }
 
-    public function getActive(){
-        return  $this -> is_active  == 0 ?  'غير مفعل'   : 'مفعل' ;
+    public function getStatus(){
+        return  $this ->status  == 0 ?  'غير مفعل'   : 'مفعل' ;
     }
 }
