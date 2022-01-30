@@ -7,20 +7,9 @@ use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
 class ProductRepository implements ProductRepositoryInterface {
-    public function  index() {
-        /*$data = [];
-        $data['users'] = User::activeStatus()->select('id')->get();
-        $data['categories'] = Category::activeStatus()->select('id')->get();
-        $data['products'] = Product::all();*/
-    return view('Dashboard.Products.index'/*, $data*/);
-    }
+    public function  index() {}
 
-    public function create() {
-        $data = [];
-        $data['sections'] = Section::select('id')->get();
-        $data['users'] = User::get();
-        return view('Dashboard.Products.btn.add', $data);
-    }
+    public function create() {}
 
     public function store($request) {
         DB::beginTransaction();
@@ -42,6 +31,5 @@ class ProductRepository implements ProductRepositoryInterface {
             DB::rollback();
             return redirect()->route('products')->withErrors(['error'=> $ex->getMessage()]);
         }
-
     }
 }

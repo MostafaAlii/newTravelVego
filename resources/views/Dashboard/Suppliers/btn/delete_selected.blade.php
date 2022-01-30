@@ -1,9 +1,8 @@
-<!-- Modal -->
-<div class="modal fade" id="delete{{$supplier->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">{{ trans('dashboard/supplier.supplier_info_deleted') }}</h5>
+            <h5 class="modal-title" id="exampleModalLabel">{{ trans('dashboard/supplier.supplier_multi_delete') }}</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
@@ -13,11 +12,7 @@
                 {{ csrf_field() }}
                 <div class="modal-body">
                     <div class="form-group">
-                        <input type="hidden" name="page_id" value="1" />
-                        @if($supplier->image)
-                            <input type="hidden" name="filename" class="form-control" value="{{ $supplier->image->filename }}" />
-                        @endif
-                        <input type="hidden" name="id" class="form-control" value="{{ $supplier->id }}" />
+                        <input type="text" name="delete_select_id" name="delete_select_id" class="form-control" value="" />
                         <h5>{{ trans('dashboard/general.warning') }}</h5>
                     </div>
                 </div>
