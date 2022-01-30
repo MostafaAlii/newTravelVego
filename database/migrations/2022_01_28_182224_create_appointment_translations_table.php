@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateServpriceTranslationsTable extends Migration
+class CreateAppointmentTranslationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateServpriceTranslationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('servprice_translations', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('servprice_id');
+        Schema::create('appointment_translations', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('appointment_id');
             $table->string('locale')->index();
             $table->string('name');
-            $table->unique(['servprice_id', 'locale']);
-            $table->foreign('servprice_id')->references('id')->on('servprices')->onDelete('cascade');
+            $table->unique(['appointment_id', 'locale']);
+            $table->foreign('appointment_id')->references('id')->on('appointments')->onDelete('cascade');
         });
     }
 
@@ -30,6 +30,6 @@ class CreateServpriceTranslationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('servprice_translations');
+        Schema::dropIfExists('appointment_translations');
     }
 }

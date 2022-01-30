@@ -20,8 +20,12 @@ class Product extends Model {
         return $this->belongsTo(Section::class, 'section_id', 'id');
     }
 
-    public function servicePriceSections() {
-        return $this->belongsTo(Servprice::class, 'servprice_id', 'id');
+    public function productAppointments() {
+        return $this->belongsToMany(Appointment::class, 'product_appointment');
+    }
+
+    public function productServicePrices() {
+        return $this->belongsToMany(Servprice::class, 'product_servprice');
     }
 
     public function suppliers() {
