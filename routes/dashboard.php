@@ -10,10 +10,10 @@ use App\Http\Controllers\Dashboard\SubCategoryController;
 use App\Http\Controllers\Dashboard\ProvincesController;
 use App\Http\Controllers\Dashboard\AreaController;
 use App\Http\Controllers\Dashboard\CityController;
+use App\Http\Controllers\Dashboard\ServicePriceController;
 use App\Http\Controllers\Dashboard\ProductController;
 use App\Http\Controllers\Dashboard\SectionsController;
 use App\Http\Controllers\Dashboard\SupplierController;
-use App\Http\Controllers\Dashboard\AlbumController; 
 /*
 |--------------------------------------------------------------------------
 | Dashboard Routes
@@ -84,6 +84,10 @@ Route::group([
             Route::resource('Suppliers', SupplierController::class);
             Route::post('Suppliers/{supplier}/upload', [SupplierController::class, 'upload'])->name('supplierGalleryUpload');
             /***********************************End Suppliers ******************************** */
+
+            /***********************************Start Services ******************************** */
+            Route::resource('ServicePrices', ServicePriceController::class)->except(['show']);
+            /***********************************End Services ******************************** */
 
             /***********************************Start Services ******************************** */
             Route::resource('Sections', SectionsController::class)->except(['show']);

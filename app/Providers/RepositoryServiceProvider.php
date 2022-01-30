@@ -22,6 +22,8 @@ use App\Interfaces\Suppliers\SupplierRepositoryInterface;
 use App\Repository\Suppliers\SupplierRepository;
 use App\Interfaces\Sections\SectionsRepositoryInterface;
 use App\Repository\Sections\SectionsRepository;
+use App\Interfaces\ServicePrices\ServicePricesRepositoryInterface;
+use App\Repository\ServicePrices\ServicePricesRepository;
 use Illuminate\Support\ServiceProvider;
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -37,6 +39,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(CityRepositoryInterface::class, CityRepository::class);
         $this->app->bind(SupplierRepositoryInterface::class, SupplierRepository::class);
         $this->app->bind(SectionsRepositoryInterface::class, SectionsRepository::class);
+        $this->app->bind(ServicePricesRepositoryInterface::class, ServicePricesRepository::class);
     }
 
     /**
