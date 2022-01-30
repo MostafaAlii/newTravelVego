@@ -23,6 +23,8 @@ class CreateProductsTable extends Migration
             $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('cascade');
             $table->integer('section_id')->unsigned()->nullable();
             $table->foreign('section_id')->references('id')->on('sections')->onDelete('set null');
+            $table->integer('servprice_id')->unsigned()->nullable();
+            $table->foreign('servprice_id')->references('id')->on('servprices')->onDelete('set null');
             $table->softDeletes();
             $table->timestamps();
         });

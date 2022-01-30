@@ -20,6 +20,10 @@ class Product extends Model {
         return $this->belongsTo(Section::class, 'section_id', 'id');
     }
 
+    public function servicePriceSections() {
+        return $this->belongsTo(Servprice::class, 'servprice_id', 'id');
+    }
+
     public function suppliers() {
         return $this->belongsTo(Supplier::class, 'supplier_id', 'id');
     }
