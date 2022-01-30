@@ -28,6 +28,14 @@ class Product extends Model {
         return $this->belongsToMany(Servprice::class, 'product_servprice');
     }
 
+    public function productCancelTerms() {
+        return $this->belongsToMany(Cancelterm::class, 'product_cancelterm');
+    }
+
+    public function productPrivacyTerms() {
+        return $this->belongsToMany(Privacyterm::class, 'product_privacyterm');
+    }
+
     public function suppliers() {
         return $this->belongsTo(Supplier::class, 'supplier_id', 'id');
     }
