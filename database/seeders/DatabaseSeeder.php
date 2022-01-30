@@ -20,6 +20,8 @@ class DatabaseSeeder extends Seeder
             ImageTableSeeder::class,
             AppointmentTableSeeder::class,
             ServpriveTableSeeder::class,
+            CancelTermTableSeeder::class,
+            PrivacyTermTableSeeder::class,
             ProductTableSeeder::class,
         ]);
     }

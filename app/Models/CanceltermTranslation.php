@@ -2,9 +2,9 @@
 namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-class AppointmentTranslation extends Model {
+class CanceltermTranslation extends Model {
     use HasFactory;
-    protected $table = "appointment_translations";
+    protected $table = "cancelterm_translations";
     protected $fillable = ['name'];
     public $timestamps = false;
 }

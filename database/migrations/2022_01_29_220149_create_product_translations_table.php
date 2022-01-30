@@ -2,6 +2,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 class CreateProductTranslationsTable extends Migration
 {
     /**
@@ -21,6 +22,7 @@ class CreateProductTranslationsTable extends Migration
             $table->unique(['product_id', 'locale']);
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });
+        DB::statement('ALTER TABLE product_translations ADD FULLTEXT(product_name)');
     }
 
     /**
