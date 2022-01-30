@@ -1,8 +1,10 @@
 <?php
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-class CreateProductTranslationsTable extends Migration
+
+class CreateProductAppointmentTable extends Migration
 {
     /**
      * Run the migrations.
@@ -11,15 +13,13 @@ class CreateProductTranslationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('product_translations', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('product_appointment', function (Blueprint $table) {
+            $table->id();
             $table->unsignedInteger('product_id');
-            $table->string('locale')->index();
-            $table->string('product_name')->nullable();
-            $table->longText('avaliable_lang')->nullable();
-            $table->longtext('description')->nullable();
-            $table->unique(['product_id', 'locale']);
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->unsignedBigInteger('appointment_id');
+            $table->foreign('appointment_id')->references('id')->on('appointments')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 
@@ -30,6 +30,6 @@ class CreateProductTranslationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_translations');
+        Schema::dropIfExists('product_appointment');
     }
 }

@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             CurrencyTableSeeder::class,
             SupplierTableSeeder::class,
             ImageTableSeeder::class,
+            AppointmentTableSeeder::class,
             ServpriveTableSeeder::class,
             ProductTableSeeder::class,
         ]);
