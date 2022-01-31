@@ -5,6 +5,7 @@ use App\Models\Servprice;
 use App\Models\Cancelterm;
 use App\Models\Privacyterm;
 use App\Models\Product;
+use App\Models\Section;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
 class ProductTableSeeder extends Seeder {
@@ -15,9 +16,15 @@ class ProductTableSeeder extends Seeder {
         $ServicePrice = Servprice::all();
         $CancelTerm = Cancelterm::all();
         $PrivacyTerm = Privacyterm::all();
+        $Sections = Section::all();
         Product::all()->each(function ($product) use ($Appointments) {
             $product->productAppointments()->attach(
                 $Appointments->random(rand(1,8))->pluck('id')->toArray()
+            );
+        });
+        Product::all()->each(function ($product) use ($Sections) {
+            $product->ProductSections()->attach(
+                $Sections->random()->pluck('id')->toArray()
             );
         });
         Product::all()->each(function ($product) use ($ServicePrice) {
