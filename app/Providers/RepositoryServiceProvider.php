@@ -24,6 +24,10 @@ use App\Interfaces\Sections\SectionsRepositoryInterface;
 use App\Repository\Sections\SectionsRepository;
 use App\Interfaces\ServicePrices\ServicePricesRepositoryInterface;
 use App\Repository\ServicePrices\ServicePricesRepository;
+use App\Interfaces\Appointments\AppointmentRepositoryInterface;
+use App\Repository\Appointments\AppointmentRepository;
+use App\Interfaces\Products\ProductRepositoryInterface;
+use App\Repository\Products\ProductRepository;
 use Illuminate\Support\ServiceProvider;
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -40,6 +44,8 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(SupplierRepositoryInterface::class, SupplierRepository::class);
         $this->app->bind(SectionsRepositoryInterface::class, SectionsRepository::class);
         $this->app->bind(ServicePricesRepositoryInterface::class, ServicePricesRepository::class);
+        $this->app->bind(AppointmentRepositoryInterface::class, AppointmentRepository::class);
+        $this->app->bind(ProductRepositoryInterface::class, ProductRepository::class);
     }
 
     /**

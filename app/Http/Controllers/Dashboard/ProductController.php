@@ -1,24 +1,34 @@
 <?php
 namespace App\Http\Controllers\Dashboard;
-use App\Interfaces\Products\ProductRepositoryInterface;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Dashboard\GeneralProductRequest;
+use App\Interfaces\Products\ProductRepositoryInterface;
 use Illuminate\Http\Request;
 class ProductController extends Controller {
-    protected $Products;
-    public function __construct(ProductRepositoryInterface $Products) {
-        $this->Products = $Products;
+    protected $Product;
+    public function __construct(ProductRepositoryInterface $Product) {
+        $this->Product = $Product;
     }
-
     public function index() {
-        return $this->Products->index();
+        return $this->Product->index();
     }
 
     public function create() {
-        return $this->Products->create();
+        return $this->Product->create();
     }
 
-    public function store(GeneralProductRequest $request) {
-        return $this->Products->store($request);
+    public function store(Request $request) {
+        //
+    }
+
+    public function edit($id) {
+        //
+    }
+
+    public function update(Request $request, $id) {
+        //
+    }
+
+    public function destroy($id) {
+        //
     }
 }

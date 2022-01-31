@@ -13,14 +13,14 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">{{ trans('dashboard/servicePriceSections.servicePriceSections') }}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0"></span>
+                <h4 class="content-title mb-0 my-auto">{{ trans('dashboard/appointment.appointmentSections') }}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0"></span>
             </div>
 
         </div>
         <div class="d-flex my-xl-auto right-content">
             <div class="pr-1 mb-3 mb-xl-0">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add">
-                    {{ trans('dashboard/servicePriceSections.add_new_servicePriceSections') }}
+                    {{ trans('dashboard/appointment.add_new_appointment') }}
                 </button>
             </div>
         </div>
@@ -29,13 +29,14 @@
 @endsection
 
 @section('content')
+        @include('Dashboard.MessageAlert.message_alert')
         <!-- row opened -->
         <div class="row row-sm">
             <div class="col-xl-12">
                 <div class="card mg-b-20">
                     <div class="card-header pb-0">
                         <div class="d-flex justify-content-between">
-                            <h4 class="card-title mg-b-0">{{ trans('dashboard/servicePriceSections.show_all_priceServiceSections_in_sidebar') }}</h4>
+                            <h4 class="card-title mg-b-0">{{ trans('dashboard/appointment.show_all_appointment_in_sidebar') }}</h4>
                         </div>
                         <p class="tx-12 tx-gray-500 mb-2"></p>
                     </div>
@@ -45,44 +46,28 @@
                                 <thead>
                                 <tr>
                                     <th class="border-bottom-0">#</th>
-                                    <th class="border-bottom-0">{{ trans('dashboard/servicePriceSections.servicePriceSections_name') }}</th>
-                                    <th class="border-bottom-0">{{ trans('dashboard/servicePriceSections.servicePriceSections_created_by') }}</th>
-                                    <th class="border-bottom-0">{{ trans('dashboard/servicePriceSections.servicePriceSections_updated_by') }}</th>
+                                    <th class="border-bottom-0">{{ trans('dashboard/appointment.appointment_name') }}</th>
                                     <th class="border-bottom-0">{{ trans('dashboard/servicePriceSections.servicePriceSections_created_at') }}</th>
-                                    <th class="border-bottom-0">{{ trans('dashboard/servicePriceSections.servicePriceSections_status') }}</th>
                                     <th class="border-bottom-0">{{ trans('dashboard/servicePriceSections.servicePriceSections_actions') }}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($ServicePrices as $ServicePrice)
+                                @foreach($Appointments as $Appointment)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $ServicePrice->name }}</td>
-                                        <td>{{ $ServicePrice->created_by }}</td>
-                                        <td>{{ $ServicePrice->updated_by }}</td>
-                                        <td>{{ $ServicePrice->created_at->diffForHumans() }}</td>
+                                        <td>{{ $Appointment->name }}</td>
+                                        <td>{{ $Appointment->created_at->diffForHumans() }}</td>
                                         <td>
-                                            <span class="font-weight-bold badge badge-pill badge-{{ $ServicePrice->status == 1 ? 'success' : 'danger'  }}">
-                                                {{ $ServicePrice->status == 1 ? trans('dashboard/supplier.supplier_active') : trans('dashboard/supplier.supplier_disActive') }}
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale" data-toggle="modal" href="#edit{{$ServicePrice->id}}">
+                                            <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale" data-toggle="modal" href="#edit{{$Appointment->id}}">
                                                 <i class="las la-pen"></i>
                                             </a>
-                                            <a class="modal-effect btn btn-sm btn-success" data-effect="effect-scale" data-toggle="modal" href="#status{{$ServicePrice->id}}">
-                                                <i class="las la-bell"></i>
-                                            </a>
-                                            <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale" data-toggle="modal" href="#delete{{$ServicePrice->id}}">
+                                            <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale" data-toggle="modal" href="#delete{{$Appointment->id}}">
                                                 <i class="las la-trash"></i>
-                                            </a>
-                                            <a class="modal-effect btn btn-sm btn-warning" data-effect="effect-scale" data-toggle="modal" href="#archive{{$ServicePrice->id}}">
-                                                <i class="las la-redo-alt"></i>
                                             </a>
                                         </td>
                                     </tr>
-                                    @include('Dashboard.PriceService.btn.edit')
-                                    @include('Dashboard.PriceService.btn.delete')
+                                    @include('Dashboard.Appointments.btn.edit')
+                                    @include('Dashboard.Appointments.btn.delete')
                                 @endforeach()
                                 </tbody>
                             </table>
@@ -91,7 +76,7 @@
                 </div>
             </div>
         </div>
-        @include('Dashboard.PriceService.btn.add')
+        @include('Dashboard.Appointments.btn.add')
     </div>
     <!-- Container closed -->
 </div>

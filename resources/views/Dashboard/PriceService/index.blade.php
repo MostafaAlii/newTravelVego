@@ -29,6 +29,7 @@
 @endsection
 
 @section('content')
+        @include('Dashboard.MessageAlert.message_alert')
         <!-- row opened -->
         <div class="row row-sm">
             <div class="col-xl-12">

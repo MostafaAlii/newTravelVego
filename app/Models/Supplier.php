@@ -53,6 +53,10 @@ class Supplier extends Authenticatable implements JWTSubject {
     public function gallery() {
         return $this->morphMany(Gallery::class, 'galleriable');
     }
+    // Active Status Scope
+    public function scopeActiveStatus($query) {
+        return $query->where('status', 1);
+    }
     protected $hidden = [
         'password',
         'remember_token',
