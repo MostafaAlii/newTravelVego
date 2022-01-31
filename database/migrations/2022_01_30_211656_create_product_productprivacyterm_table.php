@@ -15,9 +15,9 @@ class CreateProductProductprivacytermTable extends Migration
     {
         Schema::create('product_privacyterm', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('product_id');
+            $table->unsignedInteger('product_id')->nullable();
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
-            $table->unsignedBigInteger('privacyterm_id');
+            $table->unsignedBigInteger('privacyterm_id')->nullable();
             $table->foreign('privacyterm_id')->references('id')->on('privacyterms')->onDelete('cascade');
             $table->timestamps();
         });
