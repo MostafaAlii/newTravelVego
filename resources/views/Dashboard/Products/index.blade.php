@@ -19,9 +19,9 @@
         </div>
         <div class="d-flex my-xl-auto right-content">
             <div class="pr-1 mb-3 mb-xl-0">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add">
+                <a type="button" href="{{route('Products.create')}}" class="btn btn-primary">
                     {{ trans('dashboard/product.add_new_product') }}
-                </button>
+                </a>
             </div>
         </div>
     </div>
