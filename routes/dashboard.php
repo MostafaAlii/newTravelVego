@@ -14,6 +14,7 @@ use App\Http\Controllers\Dashboard\ServicePriceController;
 use App\Http\Controllers\Dashboard\ProductController;
 use App\Http\Controllers\Dashboard\SectionsController;
 use App\Http\Controllers\Dashboard\SupplierController;
+use App\Http\Controllers\Dashboard\AppointmentController;
 /*
 |--------------------------------------------------------------------------
 | Dashboard Routes
@@ -80,6 +81,10 @@ Route::group([
             Route::resource('Currencies', CurrencyController::class)->except(['show']);
             /***********************************End Currency ******************************** */
 
+            /***********************************Start Currency ******************************** */
+            Route::resource('Appointments', AppointmentController::class)->except(['show']);
+            /***********************************End Currency ******************************** */
+
             /***********************************Start Suppliers ******************************** */
             Route::resource('Suppliers', SupplierController::class);
             Route::post('Suppliers/{supplier}/upload', [SupplierController::class, 'upload'])->name('supplierGalleryUpload');
@@ -94,9 +99,9 @@ Route::group([
             /***********************************End Services ******************************** */
 
             /********************************* Start Products *****************************************/
-            Route::get('Products', [ProductController::class, 'index'])->name('products');
-            Route::get('Products_Create', [ProductController::class, 'create'])->name('product_general_information_create');
-            Route::post('Products/General/Information/Create', [ProductController::class, 'store'])->name('product_general_information_store');
+            Route::resource('Products', ProductController::class);
+            //Route::get('Products_Create', [ProductController::class, 'create'])->name('product_general_information_create');
+            //Route::post('Products/General/Information/Create', [ProductController::class, 'store'])->name('product_general_information_store');
             /********************************* End Products *****************************************/
         });
         /******************************** End Other Authentication Route ****************** */
