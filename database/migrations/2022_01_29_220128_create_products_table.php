@@ -19,6 +19,7 @@ class CreateProductsTable extends Migration
             $table->integer('product_viewed')->unsigned()->default(0);
             $table->boolean('vip')->default(0);
             $table->boolean('status')->nullable();
+            $table->string('supplier_product_terms_ex')->nullable();
             $table->integer('supplier_id')->unsigned()->nullable();
             $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('cascade');
             $table->softDeletes();
