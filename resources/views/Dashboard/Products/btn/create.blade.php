@@ -97,9 +97,14 @@
                                                 <div class="col-6 col-md-4">
                                                     <div class="form-group">
                                                         <label for="projectinput1">{{trans('dashboard/product.product_section')}}</label>
-                                                        <select name="categories" class="select2 form-control">
+                                                        <select name="sections[]" class="select2 form-control" multiple>
                                                             <optgroup label="{{trans('dashboard/product.product_section')}}">
-                                                                
+                                                                @if($sections && $sections->count() > 0)
+                                                                    @foreach($sections as $section)
+                                                                        <option
+                                                                            value="{{$section->id }}">{{$section->name}}</option>
+                                                                    @endforeach
+                                                                @endif
                                                             </optgroup>
                                                         </select>
                                                     </div>
@@ -111,12 +116,34 @@
                                                         <label for="projectinput1">{{trans('dashboard/product.product_servprice')}}</label>
                                                         <select name="categories" class="select2 form-control">
                                                             <optgroup label="{{trans('dashboard/product.product_servprice')}}">
-                                                                
+                                                                @if($servprices && $servprices->count() > 0)
+                                                                    @foreach($servprices as $servprice)
+                                                                        <option
+                                                                            value="{{$servprice->id }}">{{$servprice->name}}</option>
+                                                                    @endforeach
+                                                                @endif
                                                             </optgroup>
                                                         </select>
                                                     </div>
                                                 </div>
                                                 <!-- End Product Servprice -->
+                                                <!-- Start Select Supplier -->
+                                                <div class="col-6 col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="projectinput1">{{trans('dashboard/product.product_supplier_select')}}</label>
+                                                        <select name="supplier_id" class="select2 form-control">
+                                                            <optgroup label="{{trans('dashboard/product.product_supplier_select')}}">
+                                                                @if($suppliers && $suppliers->count() > 0)
+                                                                    @foreach($suppliers as $supplier)
+                                                                        <option
+                                                                            value="{{$supplier->id }}">{{$supplier->company_name}}</option>
+                                                                    @endforeach
+                                                                @endif
+                                                            </optgroup>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <!-- End Select Supplier -->
                                             </div>
                                             <!-- End Second Row Product Section & Product Servprice -->
                                             <!-- Start Thired Row VIP & Status -->

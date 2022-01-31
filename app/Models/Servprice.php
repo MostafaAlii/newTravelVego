@@ -18,4 +18,9 @@ class Servprice extends Model {
     public function getStatus(){
         return  $this ->status  == 0 ?  'غير مفعل'   : 'مفعل' ;
     }
+
+    // Active Status Scope
+    public function scopeActiveStatus($query) {
+        return $query->where('status', 1);
+    }
 }

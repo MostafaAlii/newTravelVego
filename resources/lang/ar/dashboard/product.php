@@ -23,6 +23,7 @@ return [
     'typing_product_name'                           =>                          'اكتب اسم المنتج',
     'product_main_price'                            =>                          'السعر الاساسى للمنتج',
     'typing_product_main_price'                     =>                          'اكتب سعر المنتج',
+    'product_supplier_select'                       =>                          'المـــورد / مقدم الخدمــة',
     'product_price_before_decs'                     =>                          'سعر المنتج قبل الخصم',
     'product_servprice'                             =>                          'السعر التفصيلى للمنتج',
     'product_vip'                                   =>                          'VIP',
