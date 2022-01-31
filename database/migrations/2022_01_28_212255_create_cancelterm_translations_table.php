@@ -14,6 +14,7 @@ class CreateCanceltermTranslationsTable extends Migration
     public function up()
     {
         Schema::create('cancelterm_translations', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('cancelterm_id');
             $table->string('locale')->index();
             $table->text('name');

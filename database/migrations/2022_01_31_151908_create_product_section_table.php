@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSectionTranslationsTable extends Migration
+class CreateProductSectionTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,12 @@ class CreateSectionTranslationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('section_translations', function (Blueprint $table) {
-            $table->id(); // Laravel 5.8+ use bigIncrements() instead of increments()
-            $table->string('locale')->index();
-
-            // Foreign key to the main model
+        Schema::create('product_section', function (Blueprint $table) {
+            $table->unsignedInteger('product_id');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->unsignedInteger('section_id');
-            $table->unique(['section_id', 'locale']);
             $table->foreign('section_id')->references('id')->on('sections')->onDelete('cascade');
-            $table->string('name');
+            $table->timestamps();
         });
     }
 
@@ -32,6 +29,6 @@ class CreateSectionTranslationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('section_translations');
+        Schema::dropIfExists('product_section');
     }
 }

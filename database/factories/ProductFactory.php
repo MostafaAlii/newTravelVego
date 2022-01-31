@@ -10,8 +10,8 @@ class ProductFactory extends Factory {
     public function definition() {
         return [
             'supplier_id'                   =>      Supplier::all()->random()->id,
-            'section_id'                    =>      Section::all()->random()->id,
-            'servprice_id'                  =>      Servprice::all()->random()->id,
+            //'section_id'                    =>      Section::all()->random()->id,
+            //'servprice_id'                  =>      Servprice::all()->random()->id,
             'product_name'                  =>      $this->faker->name,
             'avaliable_lang'                =>      $this->faker->text,
             'description'                   =>      $this->faker->paragraph,

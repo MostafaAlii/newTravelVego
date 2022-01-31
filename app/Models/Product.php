@@ -16,8 +16,8 @@ class Product extends Model {
     ];
     protected $dates = ['deleted_at'];
 
-    public function sections() {
-        return $this->belongsTo(Section::class, 'section_id', 'id');
+    public function ProductSections() {
+        return $this->belongsToMany(Section::class, 'product_section');
     }
 
     public function productAppointments() {
