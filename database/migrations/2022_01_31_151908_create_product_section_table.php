@@ -14,9 +14,9 @@ class CreateProductSectionTable extends Migration
     public function up()
     {
         Schema::create('product_section', function (Blueprint $table) {
-            $table->unsignedInteger('product_id');
+            $table->unsignedInteger('product_id')->nullable();;
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
-            $table->unsignedInteger('section_id');
+            $table->unsignedInteger('section_id')->nullable();;
             $table->foreign('section_id')->references('id')->on('sections')->onDelete('cascade');
             $table->timestamps();
         });

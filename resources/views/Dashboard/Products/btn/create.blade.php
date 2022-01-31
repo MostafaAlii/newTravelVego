@@ -107,6 +107,9 @@
                                                                 @endif
                                                             </optgroup>
                                                         </select>
+                                                        @error("sections")
+                                                        <span class="text-danger">{{$message}}</span>
+                                                        @enderror
                                                     </div>
                                                 </div>
                                                 <!-- End Product Section -->
@@ -114,7 +117,7 @@
                                                 <div class="col-6 col-md-4">
                                                     <div class="form-group">
                                                         <label for="projectinput1">{{trans('dashboard/product.product_servprice')}}</label>
-                                                        <select name="categories" class="select2 form-control">
+                                                        <select name="servprice" class="select2 form-control">
                                                             <optgroup label="{{trans('dashboard/product.product_servprice')}}">
                                                                 @if($servprices && $servprices->count() > 0)
                                                                     @foreach($servprices as $servprice)
@@ -124,6 +127,9 @@
                                                                 @endif
                                                             </optgroup>
                                                         </select>
+                                                        @error("servprice")
+                                                        <span class="text-danger">{{$message}}</span>
+                                                        @enderror
                                                     </div>
                                                 </div>
                                                 <!-- End Product Servprice -->
@@ -141,6 +147,9 @@
                                                                 @endif
                                                             </optgroup>
                                                         </select>
+                                                        @error("supplier_id")
+                                                        <span class="text-danger">{{$message}}</span>
+                                                        @enderror
                                                     </div>
                                                 </div>
                                                 <!-- End Select Supplier -->
@@ -254,153 +263,47 @@
                                     </div>
                                     <!-- End headingThree3 -->
                                     <div id="productServiceAppointmentCollapse" class="collapse b-b0 bg-white" aria-labelledby="headingTwo" data-parent="#accordion">
+                                        <!-- Start border p-3 -->
                                         <div class="border p-3">
-                                            <div class="row justify-content-md-start">
+                                            <!-- Start Row Justify-content-md-start -->
+                                            <div class="row justify-content-md-start text-center ">
                                                 <!-- Start allDay Switch -->
-                                                <div class="col-6 col-md-3">
+                                                <div class="col-8 col-md-12">
                                                     <div class="form-group mt-1">
-                                                        <input type="checkbox" value="1"
-                                                                name="allDay"
-                                                                id="switcheryColor4"
-                                                                class="js-switchery_allDay" data-color="success"
-                                                                checked/>
-                                                        <label for="switcheryColor4" class="card-title ml-1">
-                                                            {{trans('dashboard/product.product_allDay')}}
-                                                        </label>
-                                                        @error("allDay")
-                                                        <span class="text-danger">{{$message }}</span>
-                                                        @enderror
+                                                        @if($appointments && $appointments->count() > 0)
+                                                            @foreach($appointments as $appointment)
+                                                                    <input type="checkbox" value="{{$appointment->id }}"
+                                                                    name="appointment[]"
+                                                                    id="switcheryColor4"
+                                                                    class="" data-color="success"/>
+                                                                    <label for="switcheryColor4" class="card-title ml-1">
+                                                                        {{$appointment->name}}
+                                                                    </label>
+                                                                    @error("appointment[]")
+                                                                    <span class="text-danger">{{$message }}</span>
+                                                                    @enderror
+                                                            @endforeach
+                                                        @endif
                                                     </div>
                                                 </div>
                                                 <!-- End allDay Switch -->
-                                                <!-- Start Saturday Switch -->
-                                                <div class="col-6 col-md-3">
-                                                    <div class="form-group mt-1">
-                                                        <input type="checkbox" value="1"
-                                                                name="saturday"
-                                                                id="switcheryColor4"
-                                                                class="js-switchery_saturday" data-color="success"
-                                                                checked/>
-                                                        <label for="switcheryColor4" class="card-title ml-1">
-                                                            {{trans('dashboard/product.product_saturday')}}
-                                                        </label>
-                                                        @error("saturday")
-                                                        <span class="text-danger">{{$message }}</span>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-                                                <!-- End Saturday Switch -->
-                                                <!-- Start Sunday Switch -->
-                                                <div class="col-6 col-md-3">
-                                                    <div class="form-group mt-1">
-                                                        <input type="checkbox" value="1"
-                                                                name="sunday"
-                                                                id="switcheryColor4"
-                                                                class="js-switchery_sunday" data-color="success"
-                                                                checked/>
-                                                        <label for="switcheryColor4" class="card-title ml-1">
-                                                            {{trans('dashboard/product.product_sunday')}}
-                                                        </label>
-                                                        @error("saturday")
-                                                        <span class="text-danger">{{$message }}</span>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-                                                <!-- End Sunday Switch -->
-                                                <!-- Start Monday Switch -->
-                                                <div class="col-6 col-md-3">
-                                                    <div class="form-group mt-1">
-                                                        <input type="checkbox" value="1"
-                                                                name="monday"
-                                                                id="switcheryColor4"
-                                                                class="js-switchery_monday" data-color="success"
-                                                                checked/>
-                                                        <label for="switcheryColor4" class="card-title ml-1">
-                                                            {{trans('dashboard/product.product_monday')}}
-                                                        </label>
-                                                        @error("monday")
-                                                        <span class="text-danger">{{$message }}</span>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-                                                <!-- End Sunday Switch -->
                                             </div>
-                                            <div class="row justify-content-md-start">
-                                                <!-- Start allDay Switch -->
-                                                <div class="col-6 col-md-3">
-                                                    <div class="form-group mt-1">
-                                                        <input type="checkbox" value="1"
-                                                                name="tuesday"
-                                                                id="switcheryColor4"
-                                                                class="js-switchery_tuesday" data-color="success"
-                                                                checked/>
-                                                        <label for="switcheryColor4" class="card-title ml-1">
-                                                            {{trans('dashboard/product.product_tuesday')}}
-                                                        </label>
-                                                        @error("tuesday")
-                                                        <span class="text-danger">{{$message }}</span>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-                                                <!-- End allDay Switch -->
-                                                <!-- Start Saturday Switch -->
-                                                <div class="col-6 col-md-3">
-                                                    <div class="form-group mt-1">
-                                                        <input type="checkbox" value="1"
-                                                                name="wednesday"
-                                                                id="switcheryColor4"
-                                                                class="js-switchery_wednesday" data-color="success"
-                                                                checked/>
-                                                        <label for="switcheryColor4" class="card-title ml-1">
-                                                            {{trans('dashboard/product.product_wednesday')}}
-                                                        </label>
-                                                        @error("wednesday")
-                                                        <span class="text-danger">{{$message }}</span>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-                                                <!-- End Saturday Switch -->
-                                                <!-- Start Sunday Switch -->
-                                                <div class="col-6 col-md-3">
-                                                    <div class="form-group mt-1">
-                                                        <input type="checkbox" value="1"
-                                                                name="thursday"
-                                                                id="switcheryColor4"
-                                                                class="js-switchery_thursday" data-color="success"
-                                                                checked/>
-                                                        <label for="switcheryColor4" class="card-title ml-1">
-                                                            {{trans('dashboard/product.product_thursday')}}
-                                                        </label>
-                                                        @error("thursday")
-                                                        <span class="text-danger">{{$message }}</span>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-                                                <!-- End Sunday Switch -->
-                                                <!-- Start Monday Switch -->
-                                                <div class="col-6 col-md-3">
-                                                    <div class="form-group mt-1">
-                                                        <input type="checkbox" value="1"
-                                                                name="friday"
-                                                                id="switcheryColor4"
-                                                                class="js-switchery_friday" data-color="success"
-                                                                checked/>
-                                                        <label for="switcheryColor4" class="card-title ml-1">
-                                                            {{trans('dashboard/product.product_friday')}}
-                                                        </label>
-                                                        @error("friday")
-                                                        <span class="text-danger">{{$message }}</span>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-                                                <!-- End Sunday Switch -->
-                                            </div>
+                                            <!-- End Row Justify-content-md-start -->
                                         </div>
+                                        <!-- End border p-3 -->
                                     </div>
                                 </div>
                                 <!-- End Product Appointment -->
                             </div>
                             <!-- End Accordion -->
+                            <hr>
+                            <div class="text-center m-t-15">
+                                <button type="submit" class="btn btn-lg btn-primary waves-effect waves-light">
+                                    <i class="fas fa-save">
+                                        {{ trans('dashboard/general.save') }}
+                                    </i>
+                                </button>
+                            </div>
                         </form>
                         <!-- End Form -->
                     </div>
@@ -479,112 +382,7 @@
     });
     $(function (){
         // Switchery Check Box ::
-        var elem = document.querySelector('.js-switchery_allDay');
-        var init = new Switchery(elem,{
-            color             : '#64bd63',
-            secondaryColor    : '#ccc',
-            jackColor         : '#fff',
-            jackSecondaryColor: null,
-            className         : 'switchery',
-            disabled          : false,
-            disabledOpacity   : 0.5,
-            speed             : '1s',
-            size              : 'small',
-        });
-    });
-    $(function (){
-        // Switchery Check Box ::
-        var elem = document.querySelector('.js-switchery_saturday');
-        var init = new Switchery(elem,{
-            color             : '#64bd63',
-            secondaryColor    : '#ccc',
-            jackColor         : '#fff',
-            jackSecondaryColor: null,
-            className         : 'switchery',
-            disabled          : false,
-            disabledOpacity   : 0.5,
-            speed             : '1s',
-            size              : 'small',
-        });
-    });
-    $(function (){
-        // Switchery Check Box ::
-        var elem = document.querySelector('.js-switchery_sunday');
-        var init = new Switchery(elem,{
-            color             : '#64bd63',
-            secondaryColor    : '#ccc',
-            jackColor         : '#fff',
-            jackSecondaryColor: null,
-            className         : 'switchery',
-            disabled          : false,
-            disabledOpacity   : 0.5,
-            speed             : '1s',
-            size              : 'small',
-        });
-    });
-    $(function (){
-        // Switchery Check Box ::
-        var elem = document.querySelector('.js-switchery_monday');
-        var init = new Switchery(elem,{
-            color             : '#64bd63',
-            secondaryColor    : '#ccc',
-            jackColor         : '#fff',
-            jackSecondaryColor: null,
-            className         : 'switchery',
-            disabled          : false,
-            disabledOpacity   : 0.5,
-            speed             : '1s',
-            size              : 'small',
-        });
-    });
-    $(function (){
-        // Switchery Check Box ::
-        var elem = document.querySelector('.js-switchery_tuesday');
-        var init = new Switchery(elem,{
-            color             : '#64bd63',
-            secondaryColor    : '#ccc',
-            jackColor         : '#fff',
-            jackSecondaryColor: null,
-            className         : 'switchery',
-            disabled          : false,
-            disabledOpacity   : 0.5,
-            speed             : '1s',
-            size              : 'small',
-        });
-    });
-    $(function (){
-        // Switchery Check Box ::
-        var elem = document.querySelector('.js-switchery_wednesday');
-        var init = new Switchery(elem,{
-            color             : '#64bd63',
-            secondaryColor    : '#ccc',
-            jackColor         : '#fff',
-            jackSecondaryColor: null,
-            className         : 'switchery',
-            disabled          : false,
-            disabledOpacity   : 0.5,
-            speed             : '1s',
-            size              : 'small',
-        });
-    });
-    $(function (){
-        // Switchery Check Box ::
-        var elem = document.querySelector('.js-switchery_thursday');
-        var init = new Switchery(elem,{
-            color             : '#64bd63',
-            secondaryColor    : '#ccc',
-            jackColor         : '#fff',
-            jackSecondaryColor: null,
-            className         : 'switchery',
-            disabled          : false,
-            disabledOpacity   : 0.5,
-            speed             : '1s',
-            size              : 'small',
-        });
-    });
-    $(function (){
-        // Switchery Check Box ::
-        var elem = document.querySelector('.js-switchery_friday');
+        var elem = document.querySelector('.js-switchery_x');
         var init = new Switchery(elem,{
             color             : '#64bd63',
             secondaryColor    : '#ccc',

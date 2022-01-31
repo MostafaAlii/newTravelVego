@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Interfaces\Products\ProductRepositoryInterface;
+use App\Http\Requests\Dashboard\GeneralProductRequest;
 use Illuminate\Http\Request;
 class ProductController extends Controller {
     protected $Product;
@@ -16,8 +17,8 @@ class ProductController extends Controller {
         return $this->Product->create();
     }
 
-    public function store(Request $request) {
-        //
+    public function store(GeneralProductRequest $request) {
+        return $this->Product->store($request);
     }
 
     public function edit($id) {

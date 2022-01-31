@@ -17,8 +17,8 @@ class CreateProductsTable extends Migration
             $table->decimal('price_before_decs', 18, 4)->unsigned()->nullable();
             $table->integer('product_service_hourly')->nullable();
             $table->integer('product_viewed')->unsigned()->default(0);
-            $table->boolean('vip')->default(1);
-            $table->boolean('status');
+            $table->boolean('vip')->default(0);
+            $table->boolean('status')->nullable();
             $table->integer('supplier_id')->unsigned()->nullable();
             $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('cascade');
             $table->softDeletes();

@@ -10,9 +10,9 @@ class CreateProductProductcanceltermTable extends Migration
     {
         Schema::create('product_cancelterm', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('product_id');
+            $table->unsignedInteger('product_id')->nullable();;
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
-            $table->unsignedBigInteger('cancelterm_id');
+            $table->unsignedBigInteger('cancelterm_id')->nullable();;
             $table->foreign('cancelterm_id')->references('id')->on('cancelterms')->onDelete('cascade');
             $table->timestamps();
         });
