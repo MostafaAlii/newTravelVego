@@ -21,8 +21,6 @@ class CreateProductsTable extends Migration
             $table->boolean('status');
             $table->integer('supplier_id')->unsigned()->nullable();
             $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('cascade');
-            $table->integer('servprice_id')->unsigned()->nullable();
-            $table->foreign('servprice_id')->references('id')->on('servprices')->onDelete('set null');
             $table->softDeletes();
             $table->timestamps();
         });

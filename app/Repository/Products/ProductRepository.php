@@ -9,8 +9,8 @@ class ProductRepository implements ProductRepositoryInterface {
     public function  index() {
         $data = [];
         $data['suppliers'] = Supplier::activeStatus()->select('id')->get();
-        $data['sections'] = Section::get();
-        $data['products'] = Product::all();
+        //$data['sections'] = Section::get();
+        $data['products'] = Product::with('ProductSections','productAppointments', 'productServicePrices')->get();
         return view('Dashboard.Products.index', $data);
     }
 
