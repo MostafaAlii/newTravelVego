@@ -14,10 +14,11 @@ class GeneralProductRequest extends FormRequest
             'product_name' => 'required|max:100',
             'supplier_id' => 'nullable|exists:suppliers,id',
             'sections'  =>  'nullable|array|min:1',
-            'sections.*'  =>  'number|exists:sections,id',
+            'sections.*'  =>  'numeric|exists:sections,id',
             'servprice' => 'nullable|exists:servprices,id',
             'vip'       =>  'nullable',
             'status'       =>  'nullable',
+            'supplier_product_terms_ex'=> 'nullable',
         ];
     }
 }

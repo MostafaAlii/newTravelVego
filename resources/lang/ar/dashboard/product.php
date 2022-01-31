@@ -44,4 +44,6 @@ return [
     'product_thursday'                              =>                          'يوم الخميــس',
     'product_friday'                                =>                          'يوم الجمعــة',
     'product_allDay'                                =>                          'كل يــوم',
+    'product_privacyTem'                            =>                          'الشروط الخاصــة',
+    'product_cancelTem'                             =>                          'شروط الالــغاء',
 ];

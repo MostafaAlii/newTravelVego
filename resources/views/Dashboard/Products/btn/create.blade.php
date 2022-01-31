@@ -273,13 +273,13 @@
                                                         @if($appointments && $appointments->count() > 0)
                                                             @foreach($appointments as $appointment)
                                                                     <input type="checkbox" value="{{$appointment->id }}"
-                                                                    name="appointment[]"
+                                                                    name="appointments[]"
                                                                     id="switcheryColor4"
                                                                     class="" data-color="success"/>
                                                                     <label for="switcheryColor4" class="card-title ml-1">
                                                                         {{$appointment->name}}
                                                                     </label>
-                                                                    @error("appointment[]")
+                                                                    @error("appointments[]")
                                                                     <span class="text-danger">{{$message }}</span>
                                                                     @enderror
                                                             @endforeach
@@ -294,6 +294,79 @@
                                     </div>
                                 </div>
                                 <!-- End Product Appointment -->
+                                <br>
+                                <!-- Start Product Privacy Terms -->
+                                <div class="">
+                                    <!-- Start headingThree3 -->
+                                    <div class="accor bg-primary" id="headingFour4">
+                                        <h4 class="m-0">
+                                            <a href="#productServicePrivacyTemCollapse" class="" data-toggle="collapse" aria-expanded="true" aria-controls="collapseFour">
+                                                <i class="si si-cursor-move ml-2"></i>
+                                                {{ trans('dashboard/product.product_privacyTem') }} / {{ trans('dashboard/product.product_cancelTem') }}
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <!-- End headingThree3 -->
+                                    <div id="productServicePrivacyTemCollapse" class="collapse b-b0 bg-white" aria-labelledby="headingTwo" data-parent="#accordion">
+                                        <!-- Start border p-3 -->
+                                        <div class="border p-3">
+                                            <!-- Start Row Justify-content-md-start -->
+                                            <div class="row justify-content-md-start">
+                                                <!-- Start ServicePrivacyTem Switch -->
+                                                <div class="col-12 col-md-12">
+                                                    <h3 class="card-title ml-1 text-center text-primary">
+                                                        {{trans('dashboard/product.product_privacyTem')}}
+                                                    </h3>
+                                                    <br>
+                                                    <div class="form-group mt-1">
+                                                        @if($privacyTerms && $privacyTerms->count() > 0)
+                                                            @foreach($privacyTerms as $privacyTerm)
+                                                                    <input type="checkbox" value="{{$privacyTerm->id }}"
+                                                                    name="privacyTerms[]"
+                                                                    id="switcheryColor4"
+                                                                    class="" data-color="success"/>
+                                                                    <label for="switcheryColor4" class="card-title ml-1">
+                                                                        {{$privacyTerm->name}}
+                                                                    </label>
+                                                                    @error("privacyTerms[]")
+                                                                    <span class="text-danger">{{$message }}</span>
+                                                                    @enderror
+                                                            @endforeach
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                                <!-- End ServicePrivacyTem Switch -->
+                                                <!-- Start CancelPrivacyTem Switch -->
+                                                <div class="col-12 col-md-12">
+                                                    <h3 class="card-title ml-1 text-center text-primary">
+                                                        {{trans('dashboard/product.product_cancelTem')}}
+                                                    </h3>
+                                                    <br>
+                                                    <div class="form-group mt-1">
+                                                        @if($cancelTerms && $cancelTerms->count() > 0)
+                                                            @foreach($privacyTerms as $cancelTerm)
+                                                                    <input type="checkbox" value="{{$cancelTerm->id }}"
+                                                                    name="cancelTerms[]"
+                                                                    id="switcheryColor4"
+                                                                    class="" data-color="success"/>
+                                                                    <label for="switcheryColor4" class="card-title ml-1">
+                                                                        {{$cancelTerm->name}}
+                                                                    </label>
+                                                                    @error("cancelTerms[]")
+                                                                    <span class="text-danger">{{$message }}</span>
+                                                                    @enderror
+                                                            @endforeach
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                                <!-- End CancelPrivacyTem Switch -->
+                                            </div>
+                                            <!-- End Row Justify-content-md-start -->
+                                        </div>
+                                        <!-- End border p-3 -->
+                                    </div>
+                                </div>
+                                <!-- End Product Privacy Terms -->
                             </div>
                             <!-- End Accordion -->
                             <hr>
