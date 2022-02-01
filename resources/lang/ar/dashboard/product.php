@@ -8,8 +8,6 @@ return [
     'product_general_information'                   =>                          'البيانات اﻻساسية للمنتج :',
     'product_name'                                  =>                          'اسم المنتج',
     'product_name_placeholder'                      =>                          'ادخل اسم المنتج',
-    'product_slug_name'                             =>                          'اسم الرابط',
-    'product_slug_name_placeholder'                 =>                          'اسم الرابط',
     'product_description'                           =>                          'وصف المنتج',
     'product_description_placeholder'               =>                          'ادخل وصف المنتج',
     'product_short_description'                     =>                          'الوصف المختصر للمنتج',
@@ -46,4 +44,9 @@ return [
     'product_allDay'                                =>                          'كل يــوم',
     'product_privacyTem'                            =>                          'الشروط الخاصــة',
     'product_cancelTem'                             =>                          'شروط الالــغاء',
+    // Priduct Index Page
+    'product_price'                                 =>                          'سعر المنتج',
+    'product_photo'                                 =>                          'صورة المنتج',
+    'product_supplier'                              =>                          'المورد',
+    'product_explainment_price'                     =>                          'السعر التفصيلى',
 ];
