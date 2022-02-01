@@ -47,7 +47,6 @@
                                 <tr>
                                     <th class="border-bottom-0">#</th>
                                     <th class="border-bottom-0">{{ trans('dashboard/product.product_name') }}</th>
-                                    <th class="border-bottom-0">{{ trans('dashboard/product.product_photo') }}</th>
                                     <th class="border-bottom-0">{{ trans('dashboard/product.product_section') }}</th>
                                     <th class="border-bottom-0">{{ trans('dashboard/product.product_explainment_price') }}</th>
                                     <th class="border-bottom-0">{{ trans('dashboard/product.product_appointment') }}</th>
@@ -64,7 +63,6 @@
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $product->product_name }}</td>
-                                                <td>{{ $product->photo }}</td>
                                                 <td>
                                                     @foreach ($product->ProductSections as $section)
                                                         {{$section->name}}
@@ -87,6 +85,9 @@
                                                 <td>
                                                     <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale" data-toggle="modal" href="#edit{{$product->id}}">
                                                         <i class="las la-pen"></i>
+                                                    </a>
+                                                    <a class="modal-effect btn btn-sm btn-success" href="{{route('addProductsImages',$product->id)}}">
+                                                        <i class="las la-images"></i>
                                                     </a>
                                                     <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale" data-toggle="modal" href="#delete{{$product->id}}">
                                                         <i class="las la-trash"></i>

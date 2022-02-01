@@ -1,6 +1,8 @@
 @extends('Dashboard.layouts.master')
 @section('css')
+<!-- Tinymce Editor -->
 <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<!-- Switchery IOS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/switchery/0.8.2/switchery.min.css" integrity="sha512-uyGg6dZr3cE1PxtKOCGqKGTiZybe5iSq3LsqOolABqAWlIRLo/HKyrMMD8drX+gls3twJdpYX0gDKEdtf2dpmw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/switchery/0.8.2/switchery.min.js" type="text/javascript"></script>
 <link href="{{URL::asset('assets/Dashboard/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
@@ -34,7 +36,7 @@
                     <!-- Start Card Body -->
                     <div class="card-body">
                         <!-- Start Form -->
-                        <form action="{{ route('Products.store') }}" method="POST" autocomplete="off" enctype="multipart/form-data">
+                        <form id="dropzoneUploadFile" action="{{ route('Products.store') }}" method="POST" autocomplete="off" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <!-- Start Accordion -->
                             <div id="accordion" class="w-100 br-2 overflow-hidden">
@@ -441,21 +443,6 @@
     $(function (){
         // Switchery Check Box ::
         var elem = document.querySelector('.js-switchery1');
-        var init = new Switchery(elem,{
-            color             : '#64bd63',
-            secondaryColor    : '#ccc',
-            jackColor         : '#fff',
-            jackSecondaryColor: null,
-            className         : 'switchery',
-            disabled          : false,
-            disabledOpacity   : 0.5,
-            speed             : '1s',
-            size              : 'small',
-        });
-    });
-    $(function (){
-        // Switchery Check Box ::
-        var elem = document.querySelector('.js-switchery_x');
         var init = new Switchery(elem,{
             color             : '#64bd63',
             secondaryColor    : '#ccc',
