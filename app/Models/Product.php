@@ -43,4 +43,15 @@ class Product extends Model {
     public function getStatus(){
         return  $this ->status  == 0 ?  'غير مفعل'   : 'مفعل' ;
     }
+    public function getVip(){
+        return  $this ->vip  == 0 ?  'لا'   : 'نعم' ;
+    }
+
+    public function scopeActiveStatus($query) {
+        return $query->where('status', 1);
+    }
+
+    public function scopeGetWithSectionAppointmentServicePrice($query) {
+        return $query->with('ProductSections','productAppointments', 'productServicePrices');
+    }
 }

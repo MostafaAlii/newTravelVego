@@ -46,28 +46,56 @@
                                 <thead>
                                 <tr>
                                     <th class="border-bottom-0">#</th>
-                                    <th class="border-bottom-0">{{ trans('dashboard/appointment.appointment_name') }}</th>
+                                    <th class="border-bottom-0">{{ trans('dashboard/product.product_name') }}</th>
+                                    <th class="border-bottom-0">{{ trans('dashboard/product.product_photo') }}</th>
+                                    <th class="border-bottom-0">{{ trans('dashboard/product.product_section') }}</th>
+                                    <th class="border-bottom-0">{{ trans('dashboard/product.product_explainment_price') }}</th>
+                                    <th class="border-bottom-0">{{ trans('dashboard/product.product_appointment') }}</th>
+                                    <th class="border-bottom-0">{{ trans('dashboard/product.product_supplier') }}</th>
+                                    <th class="border-bottom-0">{{ trans('dashboard/product.product_vip') }}</th>
+                                    <th class="border-bottom-0">{{ trans('dashboard/product.product_status') }}</th>
                                     <th class="border-bottom-0">{{ trans('dashboard/servicePriceSections.servicePriceSections_created_at') }}</th>
                                     <th class="border-bottom-0">{{ trans('dashboard/servicePriceSections.servicePriceSections_actions') }}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {{--@foreach($Appointments as $Appointment)--}}
-                                    <tr>
-                                        <td>{{-- $loop->iteration --}}</td>
-                                        <td>{{-- $Appointment->name --}}</td>
-                                        <td>{{-- $Appointment->created_at->diffForHumans() --}}</td>
-                                        <td>
-                                            <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale" data-toggle="modal" href="#edit{{--$Appointment->id--}}">
-                                                <i class="las la-pen"></i>
-                                            </a>
-                                            <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale" data-toggle="modal" href="#delete{{--$Appointment->id--}}">
-                                                <i class="las la-trash"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    {{--@include('Dashboard.Appointments.btn.delete')--}}
-                                {{--@endforeach()--}}
+                                    @isset($products)
+                                        @foreach($products as $product)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $product->product_name }}</td>
+                                                <td>{{ $product->photo }}</td>
+                                                <td>
+                                                    @foreach ($product->ProductSections as $section)
+                                                        {{$section->name}}
+                                                    @endforeach
+                                                </td>
+                                                <td>
+                                                    @foreach ($product->productServicePrices as $explainmentPrice)
+                                                        {{$explainmentPrice->name}}
+                                                    @endforeach
+                                                </td>
+                                                <td>
+                                                    @foreach ($product->productAppointments as $appointment)
+                                                        {{$appointment->name}}
+                                                    @endforeach
+                                                </td>
+                                                <td>{{ $product->suppliers->company_name }}</td>
+                                                <td>{{ $product->getVip() }}</td>
+                                                <td>{{ $product->getStatus() }}</td>
+                                                <td>{{ $product->created_at->diffForHumans() }}</td>
+                                                <td>
+                                                    <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale" data-toggle="modal" href="#edit{{$product->id}}">
+                                                        <i class="las la-pen"></i>
+                                                    </a>
+                                                    <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale" data-toggle="modal" href="#delete{{$product->id}}">
+                                                        <i class="las la-trash"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            @include('Dashboard.Products.btn.delete')
+                                        @endforeach
+                                    @endisset
                                 </tbody>
                             </table>
                         </table>

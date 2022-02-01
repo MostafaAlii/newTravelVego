@@ -11,12 +11,12 @@ use App\Models\Product;
 use Illuminate\Support\Facades\DB;
 class ProductRepository implements ProductRepositoryInterface {
     public function  index() {
-        $data = [];
-        $data['suppliers'] = Supplier::activeStatus()->select('id')->get();
-        $data['sections'] = Section::get();
-        $data['products'] = Product::all();
-        //$data['products'] = Product::with('ProductSections','productAppointments', 'productServicePrices')->get();
-        return view('Dashboard.Products.index', $data);
+        //$data['suppliers'] = Supplier::activeStatus()->select('id')->get();
+        //$data['sections'] = Section::get();
+        //$data['products'] = Product::all();
+        //$products = Product::select('id','created_at','status', 'vip')->getWithSectionAppointmentServicePrice()->get();
+        $products = Product::with('ProductSections','productAppointments', 'productServicePrices')->get();
+        return view('Dashboard.Products.index', compact('products'));
     }
 
     public function create() {
