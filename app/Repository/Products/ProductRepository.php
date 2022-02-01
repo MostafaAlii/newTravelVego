@@ -8,14 +8,11 @@ use App\Models\Appointment;
 use App\Models\Privacyterm;
 use App\Models\Cancelterm;
 use App\Models\Product;
+use App\Models\ProductImage;
 use Illuminate\Support\Facades\DB;
 class ProductRepository implements ProductRepositoryInterface {
     public function  index() {
-        //$data['suppliers'] = Supplier::activeStatus()->select('id')->get();
-        //$data['sections'] = Section::get();
-        //$data['products'] = Product::all();
-        //$products = Product::select('id','created_at','status', 'vip')->getWithSectionAppointmentServicePrice()->get();
-        $products = Product::with('ProductSections','productAppointments', 'productServicePrices')->get();
+        $products = Product::getWithSectionAppointmentServicePrice()->get();
         return view('Dashboard.Products.index', compact('products'));
     }
 
@@ -73,6 +70,40 @@ class ProductRepository implements ProductRepositoryInterface {
             return redirect()->route('Products.index');
         } catch (\Exception $ex) {
             DB::rollback();
+            return redirect()->route('Products.index')->withErrors(['error'=> $ex->getMessage()]);
+        }
+    }
+    public function addProductImage($product_id){
+        return view('Dashboard.Products.btn.gallery')->with('id',$product_id);
+    }
+    
+    public function saveProductImage($request) {
+        if($request->hasfile('dzfile')) {
+                $file = $request->file('dzfile');
+                $filename = uploadImage('products', $file);
+                return response()->json([
+                    'name' => $filename,
+                    'original_name' => $file->getClientOriginalName(),
+                ]);
+            }
+    }
+
+    public function storeProductImageToDB($request) {
+        // return $request;
+        try {
+            if($request->has('gallery') && count($request->gallery) > 0) {
+                foreach ($request->gallery as $image) {
+                    ProductImage::create([
+                        'product_id' => $request->product_id,
+                        'photo' => $image,
+                    ]);
+                }
+                // end foreach
+            }
+            // end if
+            session()->flash('upload');
+            return redirect()->route('Products.index');
+        } catch (\Exception $ex) {
             return redirect()->route('Products.index')->withErrors(['error'=> $ex->getMessage()]);
         }
     }

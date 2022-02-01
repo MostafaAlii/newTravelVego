@@ -44,9 +44,13 @@ return [
     'product_allDay'                                =>                          'كل يــوم',
     'product_privacyTem'                            =>                          'الشروط الخاصــة',
     'product_cancelTem'                             =>                          'شروط الالــغاء',
+    'product_multiPhotoGallery'                     =>                          'معرض صور المنتج',
+    'product_multiUpload_indexing_alert'            =>                          'يمكنك رفع اكثر من صوره هنا',
     // Priduct Index Page
     'product_price'                                 =>                          'سعر المنتج',
     'product_photo'                                 =>                          'صورة المنتج',
     'product_supplier'                              =>                          'المورد',
     'product_explainment_price'                     =>                          'السعر التفصيلى',
+    'product_gallery'                               =>                          'معرض صور المنتج',
+    'add_new_product_image'                         =>                          'اضافة صور جديدة للمعرض',
 ];

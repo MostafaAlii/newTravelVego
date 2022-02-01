@@ -99,9 +99,10 @@ Route::group([
             /***********************************End Services ******************************** */
 
             /********************************* Start Products *****************************************/
-            Route::resource('Products', ProductController::class);
-            //Route::get('Products_Create', [ProductController::class, 'create'])->name('product_general_information_create');
-            //Route::post('Products/General/Information/Create', [ProductController::class, 'store'])->name('product_general_information_store');
+            Route::resource('Products', ProductController::class)->except(['show']);
+            Route::get('Products/images/{id}',[ProductController::class, 'addProductImage']) ->name('addProductsImages');
+            Route::post('Products/images', [ProductController::class, 'saveProductImage'])->name('saveProductImage');
+            Route::post('Products/images/db',[ProductController::class, 'storeProductImageToDB'])->name('storeProductImageToDB');
             /********************************* End Products *****************************************/
         });
         /******************************** End Other Authentication Route ****************** */
