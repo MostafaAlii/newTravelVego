@@ -15,6 +15,7 @@ use App\Http\Controllers\Dashboard\ProductController;
 use App\Http\Controllers\Dashboard\SectionsController;
 use App\Http\Controllers\Dashboard\SupplierController;
 use App\Http\Controllers\Dashboard\AppointmentController;
+use App\Http\Controllers\Dashboard\AttributeController;
 /*
 |--------------------------------------------------------------------------
 | Dashboard Routes
@@ -92,6 +93,10 @@ Route::group([
 
             /***********************************Start Services ******************************** */
             Route::resource('ServicePrices', ServicePriceController::class)->except(['show']);
+            /***********************************End Services ******************************** */
+
+            /***********************************Start Services ******************************** */
+            Route::resource('Attributes', AttributeController::class)->except(['show']);
             /***********************************End Services ******************************** */
 
             /***********************************Start Services ******************************** */

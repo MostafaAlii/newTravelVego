@@ -1,18 +1,9 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
-class CreateServpriceTranslationsTable extends Migration
-{
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
+class CreateServpriceTranslationsTable extends Migration {
+    public function up() {
         Schema::create('servprice_translations', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('servprice_id');
@@ -23,13 +14,7 @@ class CreateServpriceTranslationsTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
+    public function down() {
         Schema::dropIfExists('servprice_translations');
     }
 }

@@ -17,7 +17,6 @@ class GroupController extends Controller
         return $this->Groups->store($request);
     }
 
-
     public function update(Request $request) {
         return $this->Groups->update($request);
     }
