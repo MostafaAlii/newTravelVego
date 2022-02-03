@@ -45,6 +45,10 @@ class Product extends Model {
     public function productPrivacyTerms() {
         return $this->belongsToMany(Privacyterm::class, 'product_privacyterm');
     }
+    /************************************* HasMany Relations *****************************************/
+    public function attrOptions() {
+        return $this->hasMany(Attroption::class, 'product_id');
+    }
     /************************************* Scopes *****************************************/
     public function scopeActiveStatus($query) {
         return $query->where('status', 1);
