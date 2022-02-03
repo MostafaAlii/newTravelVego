@@ -47,7 +47,7 @@ class Product extends Model {
     }
     /************************************* HasMany Relations *****************************************/
     public function attrOptions() {
-        return $this->hasMany(Attroption::class, 'product_id');
+        return $this->hasMany(Option::class, 'product_id');
     }
     /************************************* Scopes *****************************************/
     public function scopeActiveStatus($query) {

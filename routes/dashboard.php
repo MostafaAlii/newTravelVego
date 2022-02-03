@@ -94,6 +94,7 @@ Route::group([
 
             /***********************************Start Services ******************************** */
             Route::resource('ServicePrices', ServicePriceController::class);
+            Route::post('updateStatus', [ServicePriceController::class, 'update_status'])->name('servPriceUpdateStatus');
             /***********************************End Services ******************************** */
 
             /***********************************Start Attributes ******************************** */
