@@ -32,4 +32,20 @@ class ServicePricesRepository implements ServicePricesRepositoryInterface {
         session()->flash('delete');
         return redirect()->route('ServicePrices.index');
     }
+
+    public function update_status($request) {
+        $Servprice = Servprice::findOrFail($request->id);
+        if (!$request->has('status')) {
+            $request->request->add(['status' => 0]);
+        } else {
+            $request->request->add(['status' => 1]);
+        }
+        
+        $Servprice->update([
+            'status'  => $request->input('status'),
+            'updated_by'    =>  auth()->user()->name,
+        ]);
+        session()->flash('edit');
+        return redirect()->route('ServicePrices.index');
+    }
 }

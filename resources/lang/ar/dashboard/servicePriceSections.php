@@ -20,4 +20,6 @@ return [
     'edit_servicePriceSection_details'                          =>                              'تعديل بيانات قسم السعر',
     'edit_servicePriceSection_name'                             =>                              'عدل اسم قسم السعر',
     'delete_servicePriceSection_details'                        =>                              'حذف بيانات قسم السعر',
+    'ServPriceStatus'                                           =>                              'الحالـــة',
+    'edit_ServPriceStatus'                                      =>                              'تعديل حاله القســـم',
 ];

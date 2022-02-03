@@ -6,6 +6,9 @@
     <link href="{{URL::asset('assets/Dashboard/plugins/datatable/css/responsive.dataTables.min.css')}}" rel="stylesheet">
     <link href="{{URL::asset('assets/Dashboard/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
     <link href="{{URL::asset('assets/Dashboard//plugins/notify/css/notifIt.css')}}" rel="stylesheet">
+    <!-- Switchery IOS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/switchery/0.8.2/switchery.min.css" integrity="sha512-uyGg6dZr3cE1PxtKOCGqKGTiZybe5iSq3LsqOolABqAWlIRLo/HKyrMMD8drX+gls3twJdpYX0gDKEdtf2dpmw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/switchery/0.8.2/switchery.min.js" type="text/javascript"></script>
 @endsection
 
 @section('page-header')
@@ -91,6 +94,7 @@
                                     </tr>
                                     @include('Dashboard.PriceService.btn.edit')
                                     @include('Dashboard.PriceService.btn.delete')
+                                    @include('Dashboard.PriceService.btn.updateStatus')
                                     @include('Dashboard.PriceService.btn.show')
                                 @endforeach()
                                 </tbody>
@@ -139,6 +143,23 @@
                     id: '-1',
                     text: {{ trans('dashboard/supplier.please_select_with_list') }},
                 },
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(function (){
+            // Switchery Check Box ::
+            var elem = document.querySelector('.js-switchery1');
+            var init = new Switchery(elem,{
+                color             : '#64bd63',
+                secondaryColor    : '#ccc',
+                jackColor         : '#fff',
+                jackSecondaryColor: null,
+                className         : 'switchery',
+                disabled          : false,
+                disabledOpacity   : 0.5,
+                speed             : '1s',
+                size              : 'small',
             });
         });
     </script>

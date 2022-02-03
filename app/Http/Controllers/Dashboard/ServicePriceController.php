@@ -21,6 +21,10 @@ class ServicePriceController extends Controller {
         return $this->ServicePrice->update($request);
     }
 
+    public function update_status(Request $request) {
+        return $this->ServicePrice->update_status($request);
+    }
+
     public function destroy(Request $request) {
         return $this->ServicePrice->destroy($request);
     }
