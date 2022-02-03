@@ -58,7 +58,11 @@
                                 @foreach($ServicePrices as $ServicePrice)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $ServicePrice->name }}</td>
+                                        <td>
+                                            <a class="modal-effect" style="color: black;" data-effect="effect-scale" data-toggle="modal" href="#show{{$ServicePrice->id}}">
+                                                {{ $ServicePrice->name }}
+                                            </a>
+                                        </td>
                                         <td>{{ $ServicePrice->created_by }}</td>
                                         <td>{{ $ServicePrice->updated_by }}</td>
                                         <td>{{ $ServicePrice->created_at->diffForHumans() }}</td>
@@ -71,19 +75,23 @@
                                             <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale" data-toggle="modal" href="#edit{{$ServicePrice->id}}">
                                                 <i class="las la-pen"></i>
                                             </a>
+                                            <a class="modal-effect btn btn-sm btn-warning" data-effect="effect-scale" data-toggle="modal" href="#show{{$ServicePrice->id}}">
+                                                <i class="las la-eye"></i>
+                                            </a>
                                             <a class="modal-effect btn btn-sm btn-success" data-effect="effect-scale" data-toggle="modal" href="#status{{$ServicePrice->id}}">
                                                 <i class="las la-bell"></i>
                                             </a>
                                             <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale" data-toggle="modal" href="#delete{{$ServicePrice->id}}">
                                                 <i class="las la-trash"></i>
                                             </a>
-                                            <a class="modal-effect btn btn-sm btn-warning" data-effect="effect-scale" data-toggle="modal" href="#archive{{$ServicePrice->id}}">
+                                            <a class="modal-effect btn btn-sm btn-primary" data-effect="effect-scale" data-toggle="modal" href="#archive{{$ServicePrice->id}}">
                                                 <i class="las la-redo-alt"></i>
                                             </a>
                                         </td>
                                     </tr>
                                     @include('Dashboard.PriceService.btn.edit')
                                     @include('Dashboard.PriceService.btn.delete')
+                                    @include('Dashboard.PriceService.btn.show')
                                 @endforeach()
                                 </tbody>
                             </table>
@@ -122,4 +130,16 @@
     <script src="{{URL::asset('assets/Dashboard/js/table-data.js')}}"></script>
     <script src="{{URL::asset('assets/Dashboard//plugins/notify/js/notifIt.js')}}"></script>
     <script src="{{URL::asset('assets/Dashboard//plugins/notify/js/notifIt-custom.js')}}"></script>
+    <script>
+        $(document).ready(function () {
+            $('.SlectBox').select2({
+                search: true,allowClear: true,
+                searchText: {{ trans('dashboard/supplier.please_select_with_list') }},
+                placeholder: {
+                    id: '-1',
+                    text: {{ trans('dashboard/supplier.please_select_with_list') }},
+                },
+            });
+        });
+    </script>
 @endsection

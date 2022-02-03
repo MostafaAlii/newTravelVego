@@ -92,7 +92,7 @@ Route::group([
             /***********************************End Suppliers ******************************** */
 
             /***********************************Start Services ******************************** */
-            Route::resource('ServicePrices', ServicePriceController::class)->except(['show']);
+            Route::resource('ServicePrices', ServicePriceController::class);
             /***********************************End Services ******************************** */
 
             /***********************************Start Services ******************************** */

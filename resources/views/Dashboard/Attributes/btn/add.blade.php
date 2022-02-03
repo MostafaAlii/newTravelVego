@@ -13,6 +13,23 @@
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
+                        <label for="projectinput2">{{ trans('dashboard/attribute.related_servPriceSection') }}</label>
+                        <select name="servprice_id" class="select2 js-example-basic-single form-control">
+                            <optgroup label="{{ trans('dashboard/attribute.related_servPriceSection') }}">
+                                @if($Servprises && $Servprises -> count() > 0)
+                                    @foreach($Servprises as $Servprise)
+                                        <option value="{{$Servprise->id }}">
+                                            {{$Servprise->name}}
+                                        </option>
+                                    @endforeach
+                                @endif
+                            </optgroup>
+                        </select>
+                        @error('servprice_id')
+                        <span class="text-danger"> {{$message}}</span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
                         <label>{{ trans('dashboard/attribute.attribute_name') }}</label>
                         <input type="text" name="name" class="form-control" placeholder="{{ trans('dashboard/attribute.enter_attribute_name_placeholder') }}" />
                     </div>

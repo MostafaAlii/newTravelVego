@@ -48,6 +48,7 @@
                                         <tr>
                                             <th class="border-bottom-0">#</th>
                                             <th class="border-bottom-0">{{ trans('dashboard/attribute.attribute_name') }}</th>
+                                            <th class="border-bottom-0">{{ trans('dashboard/attribute.related_servPriceSection') }}</th>
                                             <th class="border-bottom-0">{{ trans('dashboard/groups.groups_created_at') }}</th>
                                             <th class="border-bottom-0">{{ trans('dashboard/groups.groups_actions') }}</th>
                                         </tr>
@@ -57,6 +58,7 @@
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $attr->name }}</td>
+                                                <td>{{ $attr->servprice->name }}</td>
                                                 <td>{{ $attr->created_at->diffForHumans() }}</td>
                                                 <td>
                                                     <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale" data-toggle="modal" href="#edit{{$attr->id}}">
@@ -110,4 +112,9 @@
 <script src="{{URL::asset('assets/Dashboard/js/table-data.js')}}"></script>
 <script src="{{URL::asset('assets/Dashboard//plugins/notify/js/notifIt.js')}}"></script>
 <script src="{{URL::asset('assets/Dashboard//plugins/notify/js/notifIt-custom.js')}}"></script>
+<script>
+$(document).ready(function() {
+    $('.js-example-basic-single').select2();
+});
+</script>
 @endsection
