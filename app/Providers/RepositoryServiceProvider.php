@@ -30,11 +30,12 @@ use App\Interfaces\Products\ProductRepositoryInterface;
 use App\Repository\Products\ProductRepository;
 use App\Interfaces\Attributes\AttributeRepositoryInterface;
 use App\Repository\Attributes\AttributeRepository;
+use App\Interfaces\AttrOptions\AttrOptionRepositoryInterface;
+use App\Repository\AttrOptions\AttroptionRepository;
 use Illuminate\Support\ServiceProvider;
 class RepositoryServiceProvider extends ServiceProvider
 {
     public function register() {
-        $this->app->bind(AttributeRepositoryInterface::class, AttributeRepository::class);
         $this->app->bind(GroupRepositoryInterface::class, GroupRepository::class);
         $this->app->bind(CategoryRepositoryInterface::class, CategoryRepository::class);
         $this->app->bind(SubCategoryRepositoryInterface::class, SubCategoryRepository::class);
@@ -47,6 +48,8 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(SupplierRepositoryInterface::class, SupplierRepository::class);
         $this->app->bind(SectionsRepositoryInterface::class, SectionsRepository::class);
         $this->app->bind(ServicePricesRepositoryInterface::class, ServicePricesRepository::class);
+        $this->app->bind(AttributeRepositoryInterface::class, AttributeRepository::class);
+        $this->app->bind(AttrOptionRepositoryInterface::class, AttroptionRepository::class);
         $this->app->bind(AppointmentRepositoryInterface::class, AppointmentRepository::class);
         $this->app->bind(ProductRepositoryInterface::class, ProductRepository::class);
     }
