@@ -248,6 +248,8 @@
 						</a>
 						<ul class="slide-menu">
 							<li><a class="slide-item" href="{{ route('ServicePrices.index') }}">{{ trans('dashboard/servicePriceSections.show_all_priceServiceSections_in_sidebar') }}</a></li>
+							<li><a class="slide-item" href="{{ route('Attributes.index') }}">{{ trans('dashboard/attribute.attributes_in_sidebar') }}</a></li>
+							<li><a class="slide-item" href="{{-- route('Attributes.index') --}}">{{ trans('dashboard/attribute.attribute_options_in_sidebar') }}</a></li>
 						</ul>
 					</li>
 					<!-- End ServicePriceSections -->

@@ -28,10 +28,13 @@ use App\Interfaces\Appointments\AppointmentRepositoryInterface;
 use App\Repository\Appointments\AppointmentRepository;
 use App\Interfaces\Products\ProductRepositoryInterface;
 use App\Repository\Products\ProductRepository;
+use App\Interfaces\Attributes\AttributeRepositoryInterface;
+use App\Repository\Attributes\AttributeRepository;
 use Illuminate\Support\ServiceProvider;
 class RepositoryServiceProvider extends ServiceProvider
 {
     public function register() {
+        $this->app->bind(AttributeRepositoryInterface::class, AttributeRepository::class);
         $this->app->bind(GroupRepositoryInterface::class, GroupRepository::class);
         $this->app->bind(CategoryRepositoryInterface::class, CategoryRepository::class);
         $this->app->bind(SubCategoryRepositoryInterface::class, SubCategoryRepository::class);

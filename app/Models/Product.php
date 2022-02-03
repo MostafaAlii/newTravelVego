@@ -15,7 +15,17 @@ class Product extends Model {
         'vip' => 'boolean',
     ];
     protected $dates = ['deleted_at'];
-
+    public function getStatus(){
+        return  $this ->status  == 0 ?  'غير مفعل'   : 'مفعل' ;
+    }
+    public function getVip(){
+        return  $this ->vip  == 0 ?  'لا'   : 'نعم' ;
+    }
+    /**************************************** One To One Relations **********************************/
+    public function suppliers() {
+        return $this->belongsTo(Supplier::class, 'supplier_id', 'id');
+    }
+    /**************************************** Many To Many Relations ********************************/
     public function ProductSections() {
         return $this->belongsToMany(Section::class, 'product_section');
     }
@@ -35,22 +45,10 @@ class Product extends Model {
     public function productPrivacyTerms() {
         return $this->belongsToMany(Privacyterm::class, 'product_privacyterm');
     }
-
-    public function suppliers() {
-        return $this->belongsTo(Supplier::class, 'supplier_id', 'id');
-    }
-
-    public function getStatus(){
-        return  $this ->status  == 0 ?  'غير مفعل'   : 'مفعل' ;
-    }
-    public function getVip(){
-        return  $this ->vip  == 0 ?  'لا'   : 'نعم' ;
-    }
-
+    /************************************* Scopes *****************************************/
     public function scopeActiveStatus($query) {
         return $query->where('status', 1);
     }
-
     public function scopeGetWithSectionAppointmentServicePrice($query) {
         return $query->with('ProductSections','productAppointments', 'productServicePrices');
     }
