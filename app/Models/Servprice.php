@@ -23,4 +23,10 @@ class Servprice extends Model {
     public function scopeActiveStatus($query) {
         return $query->where('status', 1);
     }
+
+    /******************************************** One To Many ************************************************************/
+    // Get Attributes For ServPrise Section
+    public function attributes() {
+        return $this->hasMany(Attribute::class, 'servprice_id');
+    }
 }

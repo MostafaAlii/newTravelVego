@@ -9,4 +9,5 @@ return [
     'enter_attribute_name_placeholder'              =>                                    'اكتب اسم الخاصية',
     'edit_attribute_details'                        =>                                    'تعديل بيانات الخاصية',
     'delete_attribute_details'                      =>                                    'حذف بيانات الخاصية',
+    'related_servPriceSection'                      =>                                    'قسم السعر التابع',
 ];

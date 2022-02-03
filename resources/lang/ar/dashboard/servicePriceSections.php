@@ -5,6 +5,8 @@ return [
     'show_all_priceServiceSections_in_sidebar'                  =>                              'عرض اقسام اسعار الخدمات',
     'add_new_servicePriceSections'                              =>                              'اضافة قسم سعر جديد',
     'servicePriceSections_name'                                 =>                              'اسم قسم السعر',
+    'show_servicePriceSection_details'                          =>                              'عرض تفاصيل القسم',
+    'show_servicePriceSection_data_details'                     =>                              'تفاصيل قسم السعر',
     'servicePriceSections_created_by'                           =>                              'مضاف بواسطة',
     'servicePriceSections_updated_by'                           =>                              'محدث بواسطة',
     'servicePriceSections_status'                               =>                              'حالة القسم',

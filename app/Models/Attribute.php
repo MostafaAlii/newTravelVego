@@ -9,4 +9,10 @@ class Attribute extends Model {
     protected $guarded  = [];
     protected $with = ['translations'];
     protected $translatedAttributes = ['name'];
+    public $timestamps = true;
+
+    // Get ServPrice Section For This Attribute :: Inverse One To Many
+    public function servprice() {
+        return $this->belongsTo(Servprice::class, 'servprice_id');
+    }
 }

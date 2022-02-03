@@ -4,7 +4,7 @@ use App\Models\Servprice;
 use App\Interfaces\ServicePrices\ServicePricesRepositoryInterface;
 class ServicePricesRepository implements ServicePricesRepositoryInterface {
     public function index() {
-        $ServicePrices = Servprice::all();
+        $ServicePrices = Servprice::with('attributes')->get();
         return view('Dashboard.PriceService.index', compact('ServicePrices'));
     }
 
@@ -16,7 +16,7 @@ class ServicePricesRepository implements ServicePricesRepositoryInterface {
         session()->flash('add');
         return redirect()->route('ServicePrices.index');
     }
-
+    
     public function update($request) {
         $Servprice = Servprice::findOrFail($request->id);
         $Servprice->update([
