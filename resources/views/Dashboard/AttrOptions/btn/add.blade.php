@@ -51,7 +51,7 @@
                     <!-- Start Option Price -->
                     <div class="form-group">
                         <label>{{ trans('dashboard/attributeOption.attributeOption_name') }}</label>
-                        <input type="text" name="name" class="form-control" placeholder="{{ trans('dashboard/attributeOption.enter_attributeOption__name_placeholder') }}" />
+                        <input type="text" name="name" value="{{old('name')}}" class="form-control" placeholder="{{ trans('dashboard/attributeOption.attributeOption_name') }}" />
                         @error("name")
                             <span class="text-danger">{{$message}}</span>
                         @enderror
@@ -60,7 +60,7 @@
                     <!-- Start Option Price -->
                     <div class="form-group">
                         <label>{{ trans('dashboard/attributeOption.attributeOption_price') }}</label>
-                        <input type="number" name="option_price" class="form-control" placeholder="{{ trans('dashboard/attributeOption.enter_attributeOption_price_placeholder') }}" />
+                        <input type="number" name="option_price" value="{{old('')}}" class="form-control" placeholder="{{ trans('dashboard/attributeOption.enter_attributeOption_price_placeholder') }}" />
                         @error("option_price")
                             <span class="text-danger">{{$message}}</span>
                         @enderror

@@ -49,6 +49,8 @@
                                             <th class="border-bottom-0">#</th>
                                             <th class="border-bottom-0">{{ trans('dashboard/attributeOption.attributeOption_name') }}</th>
                                             <th class="border-bottom-0">{{ trans('dashboard/attributeOption.related_attribute') }}</th>
+                                            <th class="border-bottom-0">{{ trans('dashboard/attributeOption.related_product') }}</th>
+                                            <th class="border-bottom-0">{{ trans('dashboard/attributeOption.option_price') }}</th>
                                             <th class="border-bottom-0">{{ trans('dashboard/groups.groups_created_at') }}</th>
                                             <th class="border-bottom-0">{{ trans('dashboard/groups.groups_actions') }}</th>
                                         </tr>
@@ -57,9 +59,11 @@
                                         @foreach($options as $Option)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $AttrOption->name }}</td>
-                                                <td>{{ $Option->attibute->name }}</td>
-                                                <td>{{ $AttrOption->created_at->diffForHumans() }}</td>
+                                                <td>{{ $Option->name }}</td>
+                                                <td>{{ $Option->attribute->name }}</td>
+                                                <td>{{$Option->product->product_name}}</td>
+                                                <td>{{$Option->option_price}}</td>
+                                                <td>{{ $Option->created_at->diffForHumans() }}</td>
                                                 <td>
                                                     <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale" data-toggle="modal" href="#edit{{$Option->id}}">
                                                         <i class="las la-pen"></i>

@@ -96,7 +96,7 @@
                                             <!-- Start Second Row Product Section & Product Servprice -->
                                             <div class="row justify-content-md-start">
                                                 <!-- Start Product Section -->
-                                                <div class="col-6 col-md-3">
+                                                <div class="col-6 col-md-4">
                                                     <div class="form-group">
                                                         <label for="projectinput1">{{trans('dashboard/product.product_section')}}</label>
                                                         <select name="sections[]" class="select2 form-control" multiple>
@@ -116,7 +116,7 @@
                                                 </div>
                                                 <!-- End Product Section -->
                                                 <!-- Start Product Servprice -->
-                                                <div class="col-6 col-md-3">
+                                                <div class="col-6 col-md-4">
                                                     <div class="form-group">
                                                         <label for="projectinput1">{{trans('dashboard/product.product_servprice')}}</label>
                                                         <select name="servprice" class="select2 form-control">
@@ -136,7 +136,7 @@
                                                 </div>
                                                 <!-- End Product Servprice -->
                                                 <!-- Start Select Supplier -->
-                                                <div class="col-6 col-md-3">
+                                                <div class="col-6 col-md-4">
                                                     <div class="form-group">
                                                         <label for="projectinput1">{{trans('dashboard/product.product_supplier_select')}}</label>
                                                         <select name="supplier_id" class="select2 form-control">

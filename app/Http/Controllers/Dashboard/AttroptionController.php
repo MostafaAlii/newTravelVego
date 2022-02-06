@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Interfaces\AttrOptions\AttrOptionRepositoryInterface;
 use App\Http\Requests\Dashboard\AttrOptionRequest;
+use App\Http\Requests\Dashboard\OptionRequest;
 use Illuminate\Http\Request;
 class AttroptionController extends Controller
 {
@@ -14,7 +15,7 @@ class AttroptionController extends Controller
         return $this->attrOption->index();
     }
 
-    public function store(AttrOptionRequest $request) {
+    public function store(OptionRequest $request) {
         return $this->attrOption->store($request);
     }
 
