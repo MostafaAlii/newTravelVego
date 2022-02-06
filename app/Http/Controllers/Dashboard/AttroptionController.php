@@ -15,7 +15,7 @@ class AttroptionController extends Controller
     }
 
     public function store(AttrOptionRequest $request) {
-        //
+        return $this->attrOption->store($request);
     }
 
     public function update(Request $request, $id) {

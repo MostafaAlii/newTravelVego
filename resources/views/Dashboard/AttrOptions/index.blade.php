@@ -54,11 +54,11 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($Options as $Option)
+                                        @foreach($options as $Option)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $AttrOption->name }}</td>
-                                                <td>{{ $Option->attibutes->name }}</td>
+                                                <td>{{ $Option->attibute->name }}</td>
                                                 <td>{{ $AttrOption->created_at->diffForHumans() }}</td>
                                                 <td>
                                                     <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale" data-toggle="modal" href="#edit{{$Option->id}}">
@@ -69,8 +69,8 @@
                                                     </a>
                                                 </td>
                                             </tr>
-                                            {{--@include('Dashboard.Attributes.btn.edit')
-                                            @include('Dashboard.Attributes.btn.delete')--}}
+                                            @include('Dashboard.AttrOptions.btn.edit')
+                                            @include('Dashboard.AttrOptions.btn.delete')
                                         @endforeach()
                                     </tbody>
                                 </table>
@@ -82,7 +82,7 @@
             </div>
             <!-- /row -->
 
-        {{--@include('Dashboard.Attributes.btn.add')--}}
+        @include('Dashboard.AttrOptions.btn.add')
         
     </div>
     <!-- Container closed -->

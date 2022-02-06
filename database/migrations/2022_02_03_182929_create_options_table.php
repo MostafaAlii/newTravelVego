@@ -19,6 +19,7 @@ class CreateOptionsTable extends Migration
             $table->foreign('attribute_id')->references('id')->on('attributes')->onDelete('cascade');
             $table->unsignedInteger('product_id')->nullable();
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->decimal('option_price', 18, 4)->unsigned()->nullable();
             $table->index(['attribute_id', 'product_id']);
             $table->timestamps();
         });
