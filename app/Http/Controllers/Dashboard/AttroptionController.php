@@ -19,11 +19,11 @@ class AttroptionController extends Controller
         return $this->attrOption->store($request);
     }
 
-    public function update(Request $request, $id) {
-        //
+    public function update(Request $request) {
+        return $this->attrOption->update($request);
     }
 
-    public function destroy($id) {
-        //
+    public function destroy(Request $request) {
+        return $this->attrOption->destroy($request);
     }
 }

@@ -10,7 +10,7 @@ class AttroptionRepository implements AttrOptionRepositoryInterface {
         $data = [];
         $data['products'] = Product::activeStatus()->select('id')->get();
         $data['attributes'] = Attribute::select('id')->get();
-        return $data['options'] = Option::getOptionsAttrAndProduct()->get();
+        $data['options'] = Option::getOptionsAttrAndProduct()->get();
        //return $data;
         return view('Dashboard.AttrOptions.index', $data);
     }
@@ -28,6 +28,23 @@ class AttroptionRepository implements AttrOptionRepositoryInterface {
         $option->save();
         DB::commit();
         session()->flash('add');
+        return redirect()->route('AttributeOptions.index');
+    }
+
+    public function update($request) {
+        $option = Option::findOrFail($request->id);
+        $option->update([
+            'name'  => $request->input('name'),
+            'product_id'    =>  $request->product_id,
+            'attribute_id'    =>  $request->attribute_id,
+            'option_price'     =>   $request->option_price,
+        ]);
+        session()->flash('edit');
+        return redirect()->route('AttributeOptions.index');
+    }
+    public function destroy($request) {
+        Attribute::findOrFail($request->id)->delete();
+        session()->flash('delete');
         return redirect()->route('AttributeOptions.index');
     }
 }
