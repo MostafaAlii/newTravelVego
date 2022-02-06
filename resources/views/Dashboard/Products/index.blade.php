@@ -78,7 +78,7 @@
                                                         {{$appointment->name}}
                                                     @endforeach
                                                 </td>
-                                                <td>{{ $product->suppliers->company_name }}</td>
+                                                <td>{{-- $product->suppliers->first_name --}}</td>
                                                 <td>{{ $product->getVip() }}</td>
                                                 <td>{{ $product->getStatus() }}</td>
                                                 <td>{{ $product->created_at->diffForHumans() }}</td>
