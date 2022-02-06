@@ -68,9 +68,9 @@
                                                     <a class="modal-effect btn btn-sm btn-info" data-effect="effect-scale" data-toggle="modal" href="#edit{{$Option->id}}">
                                                         <i class="las la-pen"></i>
                                                     </a>
-                                                    <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale" data-toggle="modal" href="#delete{{$Option->id}}">
+                                                    {{--<a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale" data-toggle="modal" href="#delete{{$Option->id}}">
                                                         <i class="las la-trash"></i>
-                                                    </a>
+                                                    </a>--}}
                                                 </td>
                                             </tr>
                                             @include('Dashboard.AttrOptions.btn.edit')
