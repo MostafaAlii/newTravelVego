@@ -12,7 +12,7 @@ class Option extends Model {
     public $timestamps = true;
 
     // Get Attribute Section For This Option :: Inverse One To Many
-    public function attibute() {
+    public function attribute() {
         return $this->belongsTo(Attribute::class, 'attribute_id');
     }
 
@@ -21,6 +21,11 @@ class Option extends Model {
     }
     // Scopes ::
     public function scopeGetOptionsAttrAndProduct($query) {
-        return $query->select('id', 'attribute_id', 'product_id', 'option_price', 'created_at');
+        return $query->with(['product' => function($product) {
+            $product->select('id');
+        }
+        ,'attribute' => function($atrribute) {
+            $atrribute->select('id');
+        }])->select('id', 'attribute_id', 'product_id', 'option_price', 'created_at');
     }
 }
