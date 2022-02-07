@@ -11,6 +11,7 @@ use App\Http\Controllers\Dashboard\Api\General\Area\AreaApiController;
 use App\Http\Controllers\Dashboard\Api\General\Currency\CurrencyApiController;
 use App\Http\Controllers\Dashboard\Api\General\Appointment\AppointmentApiController;
 use App\Http\Controllers\Dashboard\Api\General\ServicePriceSection\ServicePriceSectionApiController;
+use App\Http\Controllers\Dashboard\Api\General\Attribute\AttributeApiController;
 use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
@@ -61,6 +62,10 @@ Route::group(['middleware' => ['api'], 'namespace' => 'Api'], function (){
     // servicePriceSections ::
     Route::group(['prefix'=>'servicePriceSections'], function() {
         Route::get('servicePriceSections', [ServicePriceSectionApiController::class, 'getServicePriceSections']);
+    });
+    // attributes ::
+    Route::group(['prefix'=>'attributes'], function() {
+        Route::get('attributes', [AttributeApiController::class, 'getAttributes']);
     });
 });
 

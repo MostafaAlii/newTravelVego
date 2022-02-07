@@ -7,7 +7,7 @@ class ProviencesResource extends JsonResource {
             'id'                                        =>          $this->id,
             'provience_translations_name'               =>          $this->translations->keyBy('locale')->map->only('name'),
             'country_id'                                =>          $this->country_id,
-            'parent_country_name'                       =>          $this->country->name,
+            'parent_country_name'                       =>          $this->country->translations->keyBy('locale')->map->only('name'),
         ];
     }
 }

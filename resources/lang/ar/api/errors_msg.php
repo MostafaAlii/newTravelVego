@@ -33,6 +33,9 @@ return [
     // servicePriceSections ::
     'get_servicePriceSections_details_successfully'     =>                                  'تم استدعاء جميع اقسام اسعار الخدمــات بنجاح',
     'servicePriceSections_not_found'                    =>                                  'عفوا لا يوجد اقسام اسعار خدمــات',
+    // Attributes ::
+    'get_attributes_details_successfully'               =>                                  'تم استدعاء جميع الخصائـــص بنجاح',
+    'attributes_not_found'                              =>                                  'عفوا لا يوجد الخصائـــص',
     // Auth ::
     'invalid_token'                                     =>                                  'و المستخدم غير مسجل دخول هذا المعرف (Token) غير صالح',
     'expired_token'                                     =>                                  'هذا المعرف (Token) منتهى',
