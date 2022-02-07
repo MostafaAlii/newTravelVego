@@ -4,6 +4,12 @@ return [
     'this_group_not_found'                              =>                                'هذه الفــئة غير موجودة',
     'get_group_details_successfully'                    =>                                'تم استدعاء بيانات الفئة بنجاح',
     'get_groups_details_successfully'                   =>                                'تم استدعاء بيانات جميع الفئات بنجاح',
+    // Country Codes ::
+    'get_countryCode_details_successfully'              =>                                  'تم استدعاء جميع اكواد الدول بنجاح',
+    'this_countryCode_not_found'                        =>                                  'هذا الكــود غير موجود',
+    // Categories ::
+    'get_categories_details_successfully'               =>                                  'تم استدعاء جميع الاقســام بنجاح',
+    'this_category_not_found'                           =>                                  'هذا القســم غير موجود',
     // Auth ::
     'invalid_token'                                     =>                                  'و المستخدم غير مسجل دخول هذا المعرف (Token) غير صالح',
     'expired_token'                                     =>                                  'هذا المعرف (Token) منتهى',
