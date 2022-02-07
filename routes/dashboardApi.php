@@ -2,6 +2,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\Api\Auth\Supplier\AuthApiController;
 use App\Http\Controllers\Dashboard\Api\GroupsApi\GroupsApiController;
+use App\Http\Controllers\Dashboard\Api\General\CountryCode\CountryCodeApiController;
+use App\Http\Controllers\Dashboard\Api\General\Categories\CategoriesApiController;
 use Illuminate\Http\Request;
 /*use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\Auth\NewPasswordController;
@@ -37,8 +39,6 @@ Route::middleware(['guest:sanctum'])->group( function () {
     // Password Resetting Api ::
     Route::post('forgot-password', [NewPasswordController::class, 'forgotPassword']);
     Route::post('reset-password', [NewPasswordController::class, 'reset']);
-    // Country Code && Country Flag ::
-    Route::get('getCountryCode', [CountryCodeApiController::class, 'getCountryCode']);
     // Countries Api ::
     Route::get('getCountries', [CountriesApiController::class, 'getCountries']);
     Route::get('Country/{id}/show', [CountriesApiController::class, 'getCountryById']);
@@ -55,7 +55,6 @@ Route::middleware(['guest:sanctum'])->group( function () {
     Route::get('getCurrencies', [CurrenciesApiController::class, 'getCurrencies']);
     Route::get('Currency/{id}/show', [CurrenciesApiController::class, 'getCurrencyById']);
     // Categories && SubCategory ::
-    Route::get('getMainCategories', [CategoryApiController::class, 'getMainCategory']);
     Route::get('Category/{id}/show', [CategoryApiController::class, 'getCategoryById']);
     Route::get('getSubCategories', [CategoryApiController::class, 'getSubCategory']);
     // Supplier ::
@@ -73,6 +72,14 @@ Route::group(['middleware' => ['api'], 'namespace' => 'Api'], function (){
     Route::group(['prefix'=>'groups'], function() {
         Route::get('getGroups', [GroupsApiController::class, 'index']);
         Route::post('Group/show', [GroupsApiController::class, 'getGroupById']);
+    });
+    // CountryCodes ::
+    Route::group(['prefix'=>'countryCodes'], function() {
+        Route::get('getCountryCode', [CountryCodeApiController::class, 'get_countryCode']);
+    });
+    // categories ::
+    Route::group(['prefix'=>'categories'], function() {
+        Route::get('getCategories', [CategoriesApiController::class, 'get_categories']);
     });
 });
 
