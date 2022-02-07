@@ -56,7 +56,6 @@ Route::middleware(['guest:sanctum'])->group( function () {
     Route::get('Currency/{id}/show', [CurrenciesApiController::class, 'getCurrencyById']);
     // Categories && SubCategory ::
     Route::get('Category/{id}/show', [CategoryApiController::class, 'getCategoryById']);
-    Route::get('getSubCategories', [CategoryApiController::class, 'getSubCategory']);
     // Supplier ::
     Route::get('Supplier/{id}/show', [SupplierApiController::class, 'getSupplierById']);
     Route::post('Supplier/edit/{id}', [SupplierApiController::class, 'updateSupplierInfo']);
@@ -73,13 +72,14 @@ Route::group(['middleware' => ['api'], 'namespace' => 'Api'], function (){
         Route::get('getGroups', [GroupsApiController::class, 'index']);
         Route::post('Group/show', [GroupsApiController::class, 'getGroupById']);
     });
-    // CountryCodes ::
-    Route::group(['prefix'=>'countryCodes'], function() {
-        Route::get('getCountryCode', [CountryCodeApiController::class, 'get_countryCode']);
-    });
     // categories ::
     Route::group(['prefix'=>'categories'], function() {
         Route::get('getCategories', [CategoriesApiController::class, 'get_categories']);
+        Route::get('getSubCategories', [CategoriesApiController::class, 'get_subcategories']);
+    });
+    // CountryCodes ::
+    Route::group(['prefix'=>'countryCodes'], function() {
+        Route::get('getCountryCode', [CountryCodeApiController::class, 'get_countryCode']);
     });
 });
 

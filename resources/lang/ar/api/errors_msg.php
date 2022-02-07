@@ -9,7 +9,9 @@ return [
     'this_countryCode_not_found'                        =>                                  'هذا الكــود غير موجود',
     // Categories ::
     'get_categories_details_successfully'               =>                                  'تم استدعاء جميع الاقســام بنجاح',
+    'get_subCategories_details_successfully'            =>                                  'تم استدعاء جميع الاقســام الفرعية بنجاح',
     'this_category_not_found'                           =>                                  'هذا القســم غير موجود',
+    'categories_not_found'                              =>                                  'عفوا لا يوجد اقســـام',
     // Auth ::
     'invalid_token'                                     =>                                  'و المستخدم غير مسجل دخول هذا المعرف (Token) غير صالح',
     'expired_token'                                     =>                                  'هذا المعرف (Token) منتهى',
