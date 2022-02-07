@@ -13,6 +13,6 @@ class City extends Model
     public $timestamps = true;
 
     public function provience(){
-        return $this->belongsTo('App\Models\Provience', 'provience_id');
+        return $this->belongsTo(Provience::class, 'provience_id');
     }
 }

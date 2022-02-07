@@ -18,6 +18,15 @@ return [
     // Proviences ::
     'get_proviences_details_successfully'               =>                                  'تم استدعاء جميع المحافظات و اسم الدولة بنجاح',
     'proviences_not_found'                              =>                                  'عفوا لا يوجد محافظات',
+    // Cities ::
+    'get_cities_details_successfully'                   =>                                  'تم استدعاء جميع المــدن و اسم المحافــظة بنجاح',
+    'cities_not_found'                                  =>                                  'عفوا لا يوجد مــدن',
+    // Areas ::
+    'get_areas_details_successfully'                    =>                                  'تم استدعاء جميع المناطــق و اسم المدينــة بنجاح',
+    'areas_not_found'                                   =>                                  'عفوا لا يوجد مناطــق',
+    // Currencies ::
+    'get_currencies_details_successfully'               =>                                  'تم استدعاء جميع العمــلات بنجاح',
+    'currencies_not_found'                              =>                                  'عفوا لا يوجد عمــلات',
     // Auth ::
     'invalid_token'                                     =>                                  'و المستخدم غير مسجل دخول هذا المعرف (Token) غير صالح',
     'expired_token'                                     =>                                  'هذا المعرف (Token) منتهى',

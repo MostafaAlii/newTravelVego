@@ -6,17 +6,10 @@ use App\Http\Controllers\Dashboard\Api\General\CountryCode\CountryCodeApiControl
 use App\Http\Controllers\Dashboard\Api\General\Categories\CategoriesApiController;
 use App\Http\Controllers\Dashboard\Api\General\Country\CountryApiController;
 use App\Http\Controllers\Dashboard\Api\General\Proviences\ProvienceApiController;
+use App\Http\Controllers\Dashboard\Api\General\City\CityApiController;
+use App\Http\Controllers\Dashboard\Api\General\Area\AreaApiController;
+use App\Http\Controllers\Dashboard\Api\General\Currency\CurrencyApiController;
 use Illuminate\Http\Request;
-/*use App\Http\Controllers\Api\AuthController;
-use App\Http\Controllers\Api\Auth\NewPasswordController;
-use App\Http\Controllers\Api\Category\CategoryApiController;
-use App\Http\Controllers\Api\Country\CountriesApiController;
-use App\Http\Controllers\Api\Province\ProvincesApiController;
-use App\Http\Controllers\Api\City\CitiesApiController;
-use App\Http\Controllers\Api\Area\AreasApiController;
-use App\Http\Controllers\Api\Currency\CurrenciesApiController;
-use App\Http\Controllers\Api\CountryCode\CountryCodeApiController;
-use App\Http\Controllers\Api\Supplier\SupplierApiController;*/
 /*
 |--------------------------------------------------------------------------
 | Dahboard API Routes
@@ -27,33 +20,6 @@ use App\Http\Controllers\Api\Supplier\SupplierApiController;*/
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-// All Api Here Must Be Authenticated
-/*Route::middleware(['auth:sanctum'])->group( function () {
-    Route::get('/user', [AuthController::class, 'getUserInfo']);
-    Route::post('/sign-out', [AuthController::class, 'signOut']);
-});
-
-// Non Authenticated Api Route
-Route::middleware(['guest:sanctum'])->group( function () {
-    Route::post('/signin', [AuthController::class, 'signin']);
-    Route::post('register', [AuthController::class, 'register']);
-    Route::post('second_register/{id}', [AuthController::class, 'second_step_register']);
-    // Password Resetting Api ::
-    Route::post('forgot-password', [NewPasswordController::class, 'forgotPassword']);
-    Route::post('reset-password', [NewPasswordController::class, 'reset']);
-    // Cities Api ::
-    Route::get('getCities', [CitiesApiController::class, 'getCities']);
-    Route::get('City/{id}/show', [CitiesApiController::class, 'getCityById']);
-    // Areas Api ::
-    Route::get('getAreas', [AreasApiController::class, 'getAreas']);
-    Route::get('Area/{id}/show', [AreasApiController::class, 'getAreaById']);
-    // Currencies Api ::
-    Route::get('getCurrencies', [CurrenciesApiController::class, 'getCurrencies']);
-    Route::get('Currency/{id}/show', [CurrenciesApiController::class, 'getCurrencyById']);
-    // Supplier ::
-    Route::get('Supplier/{id}/show', [SupplierApiController::class, 'getSupplierById']);
-    Route::post('Supplier/edit/{id}', [SupplierApiController::class, 'updateSupplierInfo']);
-});*/
 
 // Non Authenticated Api Route
 Route::group(['middleware' => ['api'], 'namespace' => 'Api'], function (){
@@ -79,6 +45,12 @@ Route::group(['middleware' => ['api'], 'namespace' => 'Api'], function (){
     Route::group(['prefix'=>'countries'], function() {
         Route::get('countries', [CountryApiController::class, 'getCountries']);
         Route::get('proviences', [ProvienceApiController::class, 'getProviences']);
+        Route::get('cities', [CityApiController::class, 'getCities']);
+        Route::get('areas', [AreaApiController::class, 'getAreas']);
+    });
+    // currencies ::
+    Route::group(['prefix'=>'currencies'], function() {
+        Route::get('currencies', [CurrencyApiController::class, 'getCurrencies']);
     });
 });
 
