@@ -5,7 +5,6 @@ use App\Models\Category;
 use App\Http\Resources\General\CategoryResource;
 use App\Http\Resources\General\SubCategoryResource;
 use App\Http\Traits\Dashboard\Api\GeneralApiTrait;
-use Illuminate\Http\Request;
 class CategoriesApiController extends Controller {
     use GeneralApiTrait;
     public function get_categories() {

@@ -4,7 +4,6 @@ use App\Http\Controllers\Controller;
 use App\Models\City;
 use App\Http\Resources\General\CitiesResource;
 use App\Http\Traits\Dashboard\Api\GeneralApiTrait;
-use Illuminate\Http\Request;
 class CityApiController extends Controller {
     use GeneralApiTrait;
     public function getCities() {

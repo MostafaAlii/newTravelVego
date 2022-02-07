@@ -4,7 +4,6 @@ use App\Http\Controllers\Controller;
 use App\Models\CountryCode;
 use App\Http\Resources\General\CountryCodeResource;
 use App\Http\Traits\Dashboard\Api\GeneralApiTrait;
-use Illuminate\Http\Request;
 class CountryCodeApiController extends Controller {
     use GeneralApiTrait;
     public function get_countryCode() {

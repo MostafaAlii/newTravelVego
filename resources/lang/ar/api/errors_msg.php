@@ -27,6 +27,12 @@ return [
     // Currencies ::
     'get_currencies_details_successfully'               =>                                  'تم استدعاء جميع العمــلات بنجاح',
     'currencies_not_found'                              =>                                  'عفوا لا يوجد عمــلات',
+    // Appointments ::
+    'get_appointments_details_successfully'             =>                                  'تم استدعاء جميع المواعيــد بنجاح',
+    'appointments_not_found'                            =>                                  'عفوا لا يوجد مواعيــد',
+    // servicePriceSections ::
+    'get_servicePriceSections_details_successfully'     =>                                  'تم استدعاء جميع اقسام اسعار الخدمــات بنجاح',
+    'servicePriceSections_not_found'                    =>                                  'عفوا لا يوجد اقسام اسعار خدمــات',
     // Auth ::
     'invalid_token'                                     =>                                  'و المستخدم غير مسجل دخول هذا المعرف (Token) غير صالح',
     'expired_token'                                     =>                                  'هذا المعرف (Token) منتهى',

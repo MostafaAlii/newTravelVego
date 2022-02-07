@@ -4,7 +4,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Area;
 use App\Http\Resources\General\AreasResource;
 use App\Http\Traits\Dashboard\Api\GeneralApiTrait;
-use Illuminate\Http\Request;
 class AreaApiController extends Controller {
     use GeneralApiTrait;
     public function getAreas() {
