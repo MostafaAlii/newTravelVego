@@ -3,8 +3,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Interfaces\Groups\GroupRepositoryInterface;
 use Illuminate\Http\Request;
-class GroupController extends Controller
-{
+class GroupController extends Controller {
     private $Groups;
     public function __construct(GroupRepositoryInterface $Groups) {
         $this->Groups = $Groups;

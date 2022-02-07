@@ -17,6 +17,8 @@ use App\Http\Controllers\Dashboard\SupplierController;
 use App\Http\Controllers\Dashboard\AppointmentController;
 use App\Http\Controllers\Dashboard\AttributeController;
 use App\Http\Controllers\Dashboard\AttroptionController;
+use App\Http\Controllers\Dashboard\PrivacyTermsController;
+use App\Http\Controllers\Dashboard\CanclationTermsController;
 /*
 |--------------------------------------------------------------------------
 | Dashboard Routes
@@ -83,9 +85,17 @@ Route::group([
             Route::resource('Currencies', CurrencyController::class)->except(['show']);
             /***********************************End Currency ******************************** */
 
-            /***********************************Start Currency ******************************** */
+            /***********************************Start Appointment ******************************** */
             Route::resource('Appointments', AppointmentController::class)->except(['show']);
-            /***********************************End Currency ******************************** */
+            /***********************************End Appointment ******************************** */
+
+            /***********************************Start PrivacyTerms ******************************** */
+            Route::resource('PrivacyTerms', PrivacyTermsController::class);
+            /***********************************End PrivacyTerms ******************************** */
+
+            /***********************************Start CanclationTerms ******************************** */
+            Route::resource('CanclationTerms', CanclationTermsController::class);
+            /***********************************End CanclationTerms ******************************** */
 
             /***********************************Start Suppliers ******************************** */
             Route::resource('Suppliers', SupplierController::class);
