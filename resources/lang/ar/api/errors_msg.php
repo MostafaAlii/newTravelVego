@@ -36,6 +36,12 @@ return [
     // Attributes ::
     'get_attributes_details_successfully'               =>                                  'تم استدعاء جميع الخصائـــص بنجاح',
     'attributes_not_found'                              =>                                  'عفوا لا يوجد الخصائـــص',
+    // Privacy Terms ::
+    'get_privacyTerms_details_successfully'             =>                                  'تم استدعــاء الشروط الخاصــة بنجــاح',
+    'privacyTerms_not_found'                            =>                                  'عفوا لا يوجـــد شــروط خاصـــة',
+    // Cancel Terms ::
+    'get_cancelTerms_details_successfully'              =>                                  'تم استدعــاء شروط الالــغاء بنجاح',
+    'cancelTerms_not_found'                             =>                                  'عفوا لا توجد شروط الغــاء',
     // Auth ::
     'invalid_token'                                     =>                                  'و المستخدم غير مسجل دخول هذا المعرف (Token) غير صالح',
     'expired_token'                                     =>                                  'هذا المعرف (Token) منتهى',
