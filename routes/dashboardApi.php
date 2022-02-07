@@ -4,6 +4,8 @@ use App\Http\Controllers\Dashboard\Api\Auth\Supplier\AuthApiController;
 use App\Http\Controllers\Dashboard\Api\GroupsApi\GroupsApiController;
 use App\Http\Controllers\Dashboard\Api\General\CountryCode\CountryCodeApiController;
 use App\Http\Controllers\Dashboard\Api\General\Categories\CategoriesApiController;
+use App\Http\Controllers\Dashboard\Api\General\Country\CountryApiController;
+use App\Http\Controllers\Dashboard\Api\General\Proviences\ProvienceApiController;
 use Illuminate\Http\Request;
 /*use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\Auth\NewPasswordController;
@@ -39,12 +41,6 @@ Route::middleware(['guest:sanctum'])->group( function () {
     // Password Resetting Api ::
     Route::post('forgot-password', [NewPasswordController::class, 'forgotPassword']);
     Route::post('reset-password', [NewPasswordController::class, 'reset']);
-    // Countries Api ::
-    Route::get('getCountries', [CountriesApiController::class, 'getCountries']);
-    Route::get('Country/{id}/show', [CountriesApiController::class, 'getCountryById']);
-    // Proviences Api ::
-    Route::get('getProviences', [ProvincesApiController::class, 'getProviences']);
-    Route::get('Provience/{id}/show', [ProvincesApiController::class, 'getProvienceById']);
     // Cities Api ::
     Route::get('getCities', [CitiesApiController::class, 'getCities']);
     Route::get('City/{id}/show', [CitiesApiController::class, 'getCityById']);
@@ -54,8 +50,6 @@ Route::middleware(['guest:sanctum'])->group( function () {
     // Currencies Api ::
     Route::get('getCurrencies', [CurrenciesApiController::class, 'getCurrencies']);
     Route::get('Currency/{id}/show', [CurrenciesApiController::class, 'getCurrencyById']);
-    // Categories && SubCategory ::
-    Route::get('Category/{id}/show', [CategoryApiController::class, 'getCategoryById']);
     // Supplier ::
     Route::get('Supplier/{id}/show', [SupplierApiController::class, 'getSupplierById']);
     Route::post('Supplier/edit/{id}', [SupplierApiController::class, 'updateSupplierInfo']);
@@ -80,6 +74,11 @@ Route::group(['middleware' => ['api'], 'namespace' => 'Api'], function (){
     // CountryCodes ::
     Route::group(['prefix'=>'countryCodes'], function() {
         Route::get('getCountryCode', [CountryCodeApiController::class, 'get_countryCode']);
+    });
+    // Countries ::
+    Route::group(['prefix'=>'countries'], function() {
+        Route::get('countries', [CountryApiController::class, 'getCountries']);
+        Route::get('proviences', [ProvienceApiController::class, 'getProviences']);
     });
 });
 

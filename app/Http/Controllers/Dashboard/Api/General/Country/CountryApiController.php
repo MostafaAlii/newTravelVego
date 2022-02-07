@@ -7,4 +7,13 @@ use App\Http\Traits\Dashboard\Api\GeneralApiTrait;
 use Illuminate\Http\Request;
 class CountryApiController extends Controller {
     use GeneralApiTrait;
+    public function getCountries() {
+        $countries = Country::select('id')->get();
+        if ($countries->count() > 0) {
+            $countriesResource = CountriesResource::collection($countries);
+            return $this->returnData('countries', $countriesResource, __('api/errors_msg.get_countries_details_successfully'));
+        } else {
+            return $this->returnErrorMessage('201', __('api/errors_msg.countries_not_found'));
+        }
+    }
 }

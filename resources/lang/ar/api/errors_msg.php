@@ -12,6 +12,12 @@ return [
     'get_subCategories_details_successfully'            =>                                  'تم استدعاء جميع الاقســام الفرعية بنجاح',
     'this_category_not_found'                           =>                                  'هذا القســم غير موجود',
     'categories_not_found'                              =>                                  'عفوا لا يوجد اقســـام',
+    // Countries ::
+    'get_countries_details_successfully'                =>                                  'تم استدعاء جميع الــدول بنجاح',
+    'countries_not_found'                               =>                                  'عفوا لا يوجد دول',
+    // Proviences ::
+    'get_proviences_details_successfully'               =>                                  'تم استدعاء جميع المحافظات و اسم الدولة بنجاح',
+    'proviences_not_found'                              =>                                  'عفوا لا يوجد محافظات',
     // Auth ::
     'invalid_token'                                     =>                                  'و المستخدم غير مسجل دخول هذا المعرف (Token) غير صالح',
     'expired_token'                                     =>                                  'هذا المعرف (Token) منتهى',
