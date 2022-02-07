@@ -12,6 +12,7 @@ use App\Http\Controllers\Dashboard\Api\General\Currency\CurrencyApiController;
 use App\Http\Controllers\Dashboard\Api\General\Appointment\AppointmentApiController;
 use App\Http\Controllers\Dashboard\Api\General\ServicePriceSection\ServicePriceSectionApiController;
 use App\Http\Controllers\Dashboard\Api\General\Attribute\AttributeApiController;
+use App\Http\Controllers\Dashboard\Api\General\Terms\TermApiController;
 use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
@@ -66,6 +67,11 @@ Route::group(['middleware' => ['api'], 'namespace' => 'Api'], function (){
     // attributes ::
     Route::group(['prefix'=>'attributes'], function() {
         Route::get('attributes', [AttributeApiController::class, 'getAttributes']);
+    });
+    // Terms ::
+    Route::group(['prefix'=>'terms'], function() {
+        Route::get('privacyTerms', [TermApiController::class, 'getPrivacyTerms']);
+        Route::get('canclationTerms', [TermApiController::class, 'getCanclationTerms']);
     });
 });
 
