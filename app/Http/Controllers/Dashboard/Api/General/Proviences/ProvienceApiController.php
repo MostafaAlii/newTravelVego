@@ -4,7 +4,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Provience;
 use App\Http\Resources\General\ProviencesResource;
 use App\Http\Traits\Dashboard\Api\GeneralApiTrait;
-use Illuminate\Http\Request;
 class ProvienceApiController extends Controller {
     use GeneralApiTrait;
     public function getProviences() {

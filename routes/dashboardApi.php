@@ -9,6 +9,8 @@ use App\Http\Controllers\Dashboard\Api\General\Proviences\ProvienceApiController
 use App\Http\Controllers\Dashboard\Api\General\City\CityApiController;
 use App\Http\Controllers\Dashboard\Api\General\Area\AreaApiController;
 use App\Http\Controllers\Dashboard\Api\General\Currency\CurrencyApiController;
+use App\Http\Controllers\Dashboard\Api\General\Appointment\AppointmentApiController;
+use App\Http\Controllers\Dashboard\Api\General\ServicePriceSection\ServicePriceSectionApiController;
 use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +53,14 @@ Route::group(['middleware' => ['api'], 'namespace' => 'Api'], function (){
     // currencies ::
     Route::group(['prefix'=>'currencies'], function() {
         Route::get('currencies', [CurrencyApiController::class, 'getCurrencies']);
+    });
+    // appointments ::
+    Route::group(['prefix'=>'appointments'], function() {
+        Route::get('appointment', [AppointmentApiController::class, 'getAppointments']);
+    });
+    // servicePriceSections ::
+    Route::group(['prefix'=>'servicePriceSections'], function() {
+        Route::get('servicePriceSections', [ServicePriceSectionApiController::class, 'getServicePriceSections']);
     });
 });
 
