@@ -7,7 +7,7 @@ class CitiesResource extends JsonResource {
             'id'                                             =>          $this->id,
             'city_translations_name'                         =>          $this->translations->keyBy('locale')->map->only('name'),
             'provience_id'                                   =>          $this->provience_id,
-            'parent_country_name'                            =>          $this->provience->name,
+            'parent_provience_name'                          =>          $this->provience->translations->keyBy('locale')->map->only('name'),
         ];
     }
 }
