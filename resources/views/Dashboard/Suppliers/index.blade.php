@@ -68,7 +68,7 @@
                                                     @if($supplier->image)
                                                         <img style="width:65px; height:65px;border-radius: 5px;" class="rounded-circle" src="{{Url::asset('Dashboard/image/suppliers/' . $supplier->image->filename)}}" alt="" />
                                                     @else
-                                                        <img style="width:65px; height:65px;border-radius: 5px;" class="rounded-circle" src="{{Url::asset('Dashboard/image/suppliers/deafult_supplier.png')}}" alt="" />
+                                                        <img style="width:65px; height:65px;border-radius: 5px;" class="rounded-circle" src="{{Url::asset('Dashboard/image/suppliers/default/default_supplier.png')}}" alt="" />
                                                     @endif
                                                 </td>
                                                 <td>{{ $supplier->phone }}</td>
