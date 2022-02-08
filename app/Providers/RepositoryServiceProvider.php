@@ -36,6 +36,8 @@ use App\Interfaces\Terms\PrivacyTerms\PrivacyTermRepositoryInterface;
 use App\Repository\Terms\PrivacyTerms\PrivacyTermRepository;
 use App\Interfaces\Terms\CanclationTerms\CanclationTermRepositoryInterface;
 use App\Repository\Terms\CanclationTerms\CanclationTermRepository;
+use App\Interfaces\Terms\PaymentTerms\PaymentTermRepositoryInterface;
+use App\Repository\Terms\PaymentTerms\PaymentTermRepository;
 use Illuminate\Support\ServiceProvider;
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -57,14 +59,10 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(AppointmentRepositoryInterface::class, AppointmentRepository::class);
         $this->app->bind(PrivacyTermRepositoryInterface::class, PrivacyTermRepository::class);
         $this->app->bind(CanclationTermRepositoryInterface::class, CanclationTermRepository::class);
+        $this->app->bind(PaymentTermRepositoryInterface::class, PaymentTermRepository::class);
         $this->app->bind(ProductRepositoryInterface::class, ProductRepository::class);
     }
 
-    /**
-     * Bootstrap services.
-     *
-     * @return void
-     */
     public function boot()
     {
         //

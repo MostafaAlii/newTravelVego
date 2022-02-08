@@ -42,6 +42,9 @@ return [
     // Cancel Terms ::
     'get_cancelTerms_details_successfully'              =>                                  'تم استدعــاء شروط الالــغاء بنجاح',
     'cancelTerms_not_found'                             =>                                  'عفوا لا توجد شروط الغــاء',
+    // Payment Terms ::
+    'get_paymentTerms_details_successfully'             =>                                  'تم استدعاء شروط الدفــع بنجاح',
+    'paymentTerms_not_found'                            =>                                  'عفوا لا توجد شروط دفــع',
     // Auth ::
     'invalid_token'                                     =>                                  'و المستخدم غير مسجل دخول هذا المعرف (Token) غير صالح',
     'expired_token'                                     =>                                  'هذا المعرف (Token) منتهى',

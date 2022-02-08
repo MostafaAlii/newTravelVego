@@ -19,6 +19,7 @@ use App\Http\Controllers\Dashboard\AttributeController;
 use App\Http\Controllers\Dashboard\AttroptionController;
 use App\Http\Controllers\Dashboard\PrivacyTermsController;
 use App\Http\Controllers\Dashboard\CanclationTermsController;
+use App\Http\Controllers\Dashboard\PaymentTermsController;
 /*
 |--------------------------------------------------------------------------
 | Dashboard Routes
@@ -96,6 +97,10 @@ Route::group([
             /***********************************Start CanclationTerms ******************************** */
             Route::resource('CanclationTerms', CanclationTermsController::class);
             /***********************************End CanclationTerms ******************************** */
+
+            /***********************************Start PaymentTerms ******************************** */
+            Route::resource('PaymentTerms', PaymentTermsController::class);
+            /***********************************End PaymentTerms ******************************** */
 
             /***********************************Start Suppliers ******************************** */
             Route::resource('Suppliers', SupplierController::class);
