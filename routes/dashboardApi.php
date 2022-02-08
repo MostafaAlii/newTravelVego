@@ -72,6 +72,7 @@ Route::group(['middleware' => ['api'], 'namespace' => 'Api'], function (){
     Route::group(['prefix'=>'terms'], function() {
         Route::get('privacyTerms', [TermApiController::class, 'getPrivacyTerms']);
         Route::get('canclationTerms', [TermApiController::class, 'getCanclationTerms']);
+        Route::get('paymentTerms', [TermApiController::class, 'getPaymentTerms']);
     });
 });
 

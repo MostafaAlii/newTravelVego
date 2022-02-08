@@ -14,4 +14,7 @@ return [
     'add_new_privacyTerm'                           =>                                          'اضــافة شــرط خــاص جديد',
     // CanclationTerms ::
     'add_new_canclationTerm'                        =>                                          'اضــافة شــرط الغــاء جديد',
+    // Payment Terms ::
+    'show_all_paymentTerms_in_sidebar'              =>                                          'شــروط الدفـــع',
+    'add_new_paymentTerm'                           =>                                          'اضافـــة شــرط دفــع جديد',
 ];

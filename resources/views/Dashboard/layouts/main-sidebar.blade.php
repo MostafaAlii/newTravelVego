@@ -243,6 +243,11 @@
 									{{ trans('dashboard/terms.show_all_canclationTerms_in_sidebar') }}
 								</a>
 							</li>
+							<li>
+								<a class="slide-item" href="{{ route('PaymentTerms.index') }}">
+									{{ trans('dashboard/terms.show_all_paymentTerms_in_sidebar') }}
+								</a>
+							</li>
 						</ul>
 					</li>
 					<!-- End Terms -->
