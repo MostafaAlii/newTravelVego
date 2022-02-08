@@ -47,7 +47,12 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqxiPxkv5Gw46jSkwDJ3GfVfl
                             <div class="main-profile-overview">
                                 <!-- Start main-img-user profile-user -->
                                 <div class="main-img-user profile-user">
-                                    <img alt="" src="{{Url::asset('Dashboard/image/suppliers/' . $userProfile->image->filename)}}">
+                                    @if($userProfile->image)
+                                        <img style="width:65px; height:65px;border-radius: 5px;" class="rounded-circle" src="{{Url::asset('Dashboard/image/suppliers/' . $userProfile->image->filename)}}" alt="" />
+                                    @else
+                                        <img style="width:65px; height:65px;border-radius: 5px;" class="rounded-circle" src="{{Url::asset('Dashboard/image/suppliers/default/default_supplier.png')}}" alt="" />
+                                    @endif
+                                    {{--<img alt="" src="{{Url::asset('Dashboard/image/suppliers/' . $userProfile->image->filename)}}">--}}
                                     <a class="fas fa-camera profile-edit" href="JavaScript:void(0);"></a>
                                 </div>
                                 <!-- End main-img-user profile-user -->

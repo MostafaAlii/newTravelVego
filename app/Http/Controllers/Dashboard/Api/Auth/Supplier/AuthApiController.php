@@ -11,9 +11,10 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Traits\Dashboard\Upload;
 use Illuminate\Http\Request;
 class AuthApiController extends Controller {
-    use GeneralApiTrait;
+    use GeneralApiTrait, Upload;
     public function login(Request $request) {
         try{
             // Validation 
@@ -43,6 +44,7 @@ class AuthApiController extends Controller {
 
     // Registeration First Widget 
     public function first_registration(Request $request) {
+        DB::beginTransaction();
         try {
             // Validation 
             $rules = [
@@ -62,7 +64,9 @@ class AuthApiController extends Controller {
             $supplier->password = Hash::make($request->password);
             $supplier->status = 0;
             $supplier->save();
-
+            // Upload Supplier Avatar ::
+            //$this->verifyAndStoreImage($request, 'photo', 'suppliers', 'upload_image', $supplier->id, 'App\Models\Supplier');
+            DB::commit();
             /*$credentials = $request->only(['email', 'password']);
             $token = Auth::guard('supplier-api')->attempt($credentials);
             if (! $token)
@@ -73,6 +77,7 @@ class AuthApiController extends Controller {
             //return token
             return $this->returnData('supplier_first_register_data', $supplier, __('api/errors_msg.supplier_regirstation_first_widget_successfuly'));
         } catch(\Exception $ex) {
+            DB::rollback();
             return $this->returnErrorMessage($ex->getCode(), $ex->getMessage());
         }
     }
