@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\Api\Auth\User\UserAuthApiController;
+use App\Http\Controllers\Dashboard\Api\User\ProfileApiController;
 /*
 |--------------------------------------------------------------------------
 | Dahboard User API Routes
@@ -18,5 +19,10 @@ Route::group(['middleware' => ['api'], 'namespace' => 'Api'], function (){
     Route::group(['prefix'=>'user', 'namespace' => 'User'], function() {
         Route::post('login', [UserAuthApiController::class, 'login']);
         Route::post('logout', [UserAuthApiController::class, 'logout'])->middleware('assign.guard:user-api');
+    });
+
+    // User Client Authenticated Route ::
+    Route::group(['prefix'=>'user', 'namespace' => 'User', 'middleware' => 'assign.guard:user-api'], function() {
+        Route::post('profile', [ProfileApiController::class, 'getProfile']);
     });
 });

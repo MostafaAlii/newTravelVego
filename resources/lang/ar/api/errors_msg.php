@@ -55,4 +55,7 @@ return [
     'login_successfuly_and_token_is_back'               =>                                  'تم تسجيل الدخول بنجاح و ال token اهه يا شيماء',
     'logout_successfully'                               =>                                  'تم تسجيل الخروج بنجاح',
     'unauthenticated_user'                              =>                                  'المستخدم غير مسجل دخول',
+    // Registrations ::
+    'supplier_regirstation_first_widget_successfuly'    =>                                  'تم تسجيل بيانات المورد بنجاح',
+    'supplier_regirstation_second_widget_successfuly'   =>                                  'تم تحديث بيانات المورد و تحميل الباركود',
 ];
