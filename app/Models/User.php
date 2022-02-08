@@ -1,21 +1,12 @@
 <?php
 namespace App\Models;
-use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\Notifications\Auth\ResetPasswordNotification;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
-class User extends Authenticatable implements JWTSubject
-{
-    use HasFactory, Notifiable, Translatable;
+class User extends Authenticatable implements JWTSubject {
+    use HasFactory, Notifiable;
     protected $table = 'users';
-    protected $guarded  = [];
-    protected $with = ['translations'];
-    public $translatedAttributes = ['first_name', 'last_name', 'company_name', 'description', 'address_primary', 'address_secondry'];
-    protected $appends = ['image_path', 'barcode_path'];
-    public $timestamps = true;
-
     public function getJWTIdentifier() {
         return $this->getKey();
     }
@@ -23,35 +14,18 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
-    public function getImagePathAttribute() {
-        return asset('uploads/suppliersImage/' . $this->image);
-    }
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+    ];
 
-    public function getBarcodePathAttribute() {
-        return asset('uploads/supplierBarCode/' . $this->code);
-    }
-
-    public function scopeActiveStatus($query) {
-        return $query->where('status', 1);
-    }
-    public function currency(){
-        return $this->belongsTo(Currency::class, 'currency_id ');
-    }
-    public function group(){
-        return $this->belongsTo(Group::class, 'group_id');
-    }
-    public function category() {
-        return $this->belongsTo(Category::class, 'category_id');
-    }
     protected $hidden = [
         'password',
         'remember_token',
     ];
+
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    public function sendPasswordResetNotification($token) {
-        $url = 'https://travelvego.test/reset-password?token=' . $token;
-        $this->notify(new ResetPasswordNotification($url));
-    }
 }
