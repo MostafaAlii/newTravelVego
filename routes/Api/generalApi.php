@@ -1,6 +1,5 @@
 <?php
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Dashboard\Api\Auth\Supplier\AuthApiController;
 use App\Http\Controllers\Dashboard\Api\GroupsApi\GroupsApiController;
 use App\Http\Controllers\Dashboard\Api\General\CountryCode\CountryCodeApiController;
 use App\Http\Controllers\Dashboard\Api\General\Categories\CategoriesApiController;
@@ -13,10 +12,9 @@ use App\Http\Controllers\Dashboard\Api\General\Appointment\AppointmentApiControl
 use App\Http\Controllers\Dashboard\Api\General\ServicePriceSection\ServicePriceSectionApiController;
 use App\Http\Controllers\Dashboard\Api\General\Attribute\AttributeApiController;
 use App\Http\Controllers\Dashboard\Api\General\Terms\TermApiController;
-use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
-| Dahboard API Routes
+| Dahboard General API Routes
 |--------------------------------------------------------------------------
 |
 | Here is where you can register API routes for your application. These
@@ -27,10 +25,6 @@ use Illuminate\Http\Request;
 
 // Non Authenticated Api Route
 Route::group(['middleware' => ['api'], 'namespace' => 'Api'], function (){
-    Route::group(['prefix'=>'supplier', 'namespace' => 'Supplier'], function() {
-        Route::post('login', [AuthApiController::class, 'login']);
-        Route::post('logout', [AuthApiController::class, 'logout'])->middleware('assign.guard:supplier-api');
-    });
     // Groups ::
     Route::group(['prefix'=>'groups'], function() {
         Route::get('getGroups', [GroupsApiController::class, 'index']);
@@ -75,8 +69,3 @@ Route::group(['middleware' => ['api'], 'namespace' => 'Api'], function (){
         Route::get('paymentTerms', [TermApiController::class, 'getPaymentTerms']);
     });
 });
-
-// Authenticated Api Route
-/*Route::group(['middleware' => ['assign.guard:supplier-api']], function (){
-    
-});*/

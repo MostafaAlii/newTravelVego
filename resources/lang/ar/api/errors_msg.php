@@ -54,4 +54,5 @@ return [
     'login_credentials_failed'                          =>                                  'بيانات تسجيل الدخول غير صحيحة تاكد من بياناتك !!',
     'login_successfuly_and_token_is_back'               =>                                  'تم تسجيل الدخول بنجاح و ال token اهه يا شيماء',
     'logout_successfully'                               =>                                  'تم تسجيل الخروج بنجاح',
+    'unauthenticated_user'                              =>                                  'المستخدم غير مسجل دخول',
 ];
